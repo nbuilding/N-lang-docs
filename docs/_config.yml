@@ -1,3 +1,4 @@
 remote_theme: rundocs/jekyll-rtd-theme
+lang: en
 title: N Lang
 description: The documentation for N, the rising programming language designed by the Gunn N Building
