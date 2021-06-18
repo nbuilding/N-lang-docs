@@ -1,6 +1,6 @@
 # Importing .n files
 
-This will be `import.n`
+Imports are a great way of using other people's code and exploding files so they are less cumbersome. The `imp` keyword is used to import another file along with a path to the file:
 ```js
 // the pub modifier allows variables to be public
 
@@ -20,6 +20,9 @@ let importedThings = imp "./import.n" // This goes though the file so it will pr
 print(importedThings.test) // Prints out hello
 //print(importedthigns.test2) will cause an error because it is not public
 ```
+The `pub` modifier is used to export values to other files. This is why it can be applied to nearly every type or variable declaration, as by default, all values are private, to prevent malicous or accidential messing of code in other files.
+
+Though it may be useful, circular imports are outlawed in the current system as there is no good way of making it work properly in the system we have defined.	
 
 ## Notes:
 - `imp` returns a record-like object and so its type is as such, so it cannot be assigned to a record typed variable.
