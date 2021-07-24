@@ -1,8 +1,20 @@
 # Internal Libraries
 
-Internal Libraries are used to add complicated features from Python and JavaScrpt for users to use in N, you can import these using the `import` keyword. Here are the libraries you can import:
+Internal Libraries are used to add complicated features from Python and JavaScript for users to use in N, you can import these using the `import` keyword. Here are the libraries you can import.
 
-`FileIO`: This is used for file input and output:
+**Table of contents**
+
+1. [`FileIO`](#FileIO)
+2. [`json`](#json)
+3. [`request`](#request)
+4. [`SystemIO`](#SystemIO)
+5. [`times`](#times)
+6. [`websocket`](#websocket)
+7. [Notes](#Notes)
+
+## `FileIO`
+
+This is used for file input and output:
 ```js
 import FileIO
 ```
@@ -49,7 +61,9 @@ Requires the `FILE_ALLOW` environment variable to be set to `true`, takes in a p
 FileIO.getFiles("./")!
 ```
 
-`json`: This is used for dealing with `json` information:
+## `json`
+
+This is used for dealing with `json` information:
 ```js
 import json
 ```
@@ -81,7 +95,9 @@ This takes in a string and will return a `json.value` in an attempt to parse it,
 print(json.parseSafe("{ test: \"test\" }") |> default(json.string("invalid")))
 ```
 
-`request`: used for http related activities:
+## `request`
+
+Used for http related activities:
 ```js
 import request
 ```
@@ -144,7 +160,9 @@ request.createServer(
 )!
 ```
 
-`SystemIO`: Used for interacting with the console:
+## `SystemIO`
+
+Used for interacting with the console:
 ```js
 import SystemIO
 ```
@@ -161,7 +179,9 @@ Requires the `COMMAND_ALLOW` environment variable to be set to `true`, takes in 
 SystemIO.run("echo hello")!
 ```
 
-`times`: Used for stopping the program and getting the current time:
+## `times`
+
+Used for stopping the program and getting the current time:
 ```js
 import times
 ```
@@ -178,7 +198,9 @@ Returns the current epoch time
 times.getTime()!
 ```
 
-`websocket`: Used for websocket related activities
+## `websocket`
+
+Used for websocket related activities
 ```js
 import websocket
 ```
