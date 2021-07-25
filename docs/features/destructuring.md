@@ -3,8 +3,7 @@
 Destructuring is the main way to get items out of tuples and can be used inside an `if` statment to check whether or not a destucurable type fits a certain pattern. There are two different types of detructuring:
 
 ```js
-let a,
-  b = (1, 2) // Sets a and b to 1 and 2 respectively
+let a,   b = (1, 2) // Sets a and b to 1 and 2 respectively
 let { a, c: b } = { a: 1, c: 1 } // Sets a and c in the record to a and b respectively
 ```
 

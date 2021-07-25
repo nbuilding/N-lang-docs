@@ -26,6 +26,9 @@ assert value intInBase10(10) = "10"
 **NOTE**: To convert a float to a string, use the `stringify` function from the
 `json` built-in module.
 
+**NOTE**: To parse a string as an integer or float, use the `parse` or
+`parseSafe` function from the `json` module.
+
 ### `toFloat` : `int -> float`
 
 Converts an integer to a float. Inverse of `round`, `floor`, and `ceil`.
@@ -152,25 +155,6 @@ assert value len("abc") = 3
 assert value len(100) = 0
 ```
 
-### `range` : `int -> int -> int -> list[int]`
-
-Returns a list of integers within the specified range. This takes a starting
-value (inclusive), an end value (exclusive), and a step value. This is based on
-[Python's `range`
-constructor](https://docs.python.org/3/library/stdtypes.html#typesseq-range), so
-it supports negative step values.
-
-```ts
-assert value range(0, 3, 1) = [0, 1, 2]
-assert value range(0, 10, 1) = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-assert value range(1, 11, 1) = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-assert value range(0, 30, 5) = [0, 5, 10, 15, 20, 25]
-assert value range(0, 10, 3) = [0, 3, 6, 9]
-assert value range(0, -10, -1) = [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
-assert value range(0, 0, 1) = []
-assert value range(1, 0, 1) = []
-```
-
 ### `itemAt` : `[t] int -> list[t] -> maybe[t]`
 
 Gets the item of a list by index. Does not support negative indices.
@@ -182,6 +166,9 @@ assert value itemAt(-1, [1, 2, 3]) = none
 
 **NOTE**: N now has a special list item access syntax that should be used
 instead: `list[index]`.
+
+**NOTE**: The representation of lists in memory is implementation-defined, so
+item access may be O(n) in the worst case.
 
 ### `append` : `[t] t -> list[t] -> list[t]`
 
@@ -215,11 +202,40 @@ returns `none`, the item will not be included in the list; otherwise, the
 contained value in the `maybe` value will be included in the new list. Returns a
 new list containing the resulting `yes` contained values given by the function.
 
+`filterMap` is intentionally generalised because `filter` and `map` can be
+easily defined in terms of `filterMap`.
+
 ```ts
 assert value filterMap([value:int] -> maybe[int] {
 	return yes(value * value + 1)
 }, [0, 1, 2, 3, 4]) = [1, 2, 5, 10, 17]
 ```
+
+### `range` : `int -> int -> int -> list[int]`
+
+Returns a list of integers within the specified range. This takes a starting
+value (inclusive), an end value (exclusive), and a step value. This is based on
+[Python's `range`
+constructor](https://docs.python.org/3/library/stdtypes.html#typesseq-range), so
+it supports negative step values.
+
+`range` is intended to be used with `for` loops to loop over a range of
+integers.
+
+```ts
+assert value range(0, 3, 1) = [0, 1, 2]
+assert value range(0, 10, 1) = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+assert value range(1, 11, 1) = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+assert value range(0, 30, 5) = [0, 5, 10, 15, 20, 25]
+assert value range(0, 10, 3) = [0, 3, 6, 9]
+assert value range(0, -10, -1) = [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+assert value range(0, 0, 1) = []
+assert value range(1, 0, 1) = []
+```
+
+**NOTE**: The representation of lists in memory is implementation-defined, so an
+implementation may attempt to store the entire list in memory. This may be
+costly for performance when iterating over a large range.
 
 ## Maps
 
@@ -235,18 +251,6 @@ assert type map : map[str, int]
 **NOTE**: Maps allow functions and commands as keys, but the behaviour of these
 maps is undefined.
 
-### `getValue` : `[k, v] k -> map[k, v] -> maybe[v]`
-
-Gets a value from the given map by the given key.
-
-```ts
-assert value getValue("b", map) = yes(2)
-assert value getValue("c", map) = none
-```
-
-**NOTE**: N now has a special list item access syntax that should be used
-instead: `map[key]`.
-
 ### `entries` : `[k, v] map[k, v] -> list[(k, v)]`
 
 Returns a list of key-value pairs from the map. Inverse of `mapFrom`.
@@ -256,6 +260,21 @@ assert value entries(map) = [("a", 1), ("b", 2)]
 ```
 
 **NOTE**: The order of the key-value pairs should be preserved.
+
+### `getValue` : `[k, v] k -> map[k, v] -> maybe[v]`
+
+Gets a value from the given map by the given key.
+
+```ts
+assert value getValue("b", map) = yes(2)
+assert value getValue("c", map) = none
+```
+
+**NOTE**: N now has a special map value access syntax that should be used
+instead: `map[key]`.
+
+**NOTE**: The value access algorithm is implementation-defined and may be O(n)
+in the worst case.
 
 ## `maybe` values
 
