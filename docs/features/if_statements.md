@@ -64,10 +64,11 @@ print(
 ## `if let`
 
 Instead of an expression, `if` statements and expressions also support `if let`.
-`if let` is followed by a [conditional pattern](./destructuring.md) then an
-expression; if the resulting value matches the pattern, then the `if` branch is
-run with the extracted values from the pattern. Otherwise, the `else` branch is
-run, if present.
+`if let` is followed by a [conditional
+pattern](./destructuring.md#conditional-patterns) then an expression; if the
+resulting value matches the pattern, then the `if` branch is run with the
+extracted values from the pattern. Otherwise, the `else` branch is run, if
+present.
 
 **NOTE**: `if let` is a special syntax, not an expression, so you cannot put
 parentheses around `let ... = ...`.
