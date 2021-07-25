@@ -24,6 +24,42 @@ let listindexvalue = itemAt(1, listvalue) // This returns a maybe which will nee
 
 print(listindexvalue)
 ```
+To edit a record or set an item in a list you are able to use the `..` operator, here is an example of its use:
+```js
+let listvalue:list[str] = ["a", "b", "c"]
+
+print([..listvalue, "d"]) // prints out ["a", "b", "c", "d"]
+```
+The `..` operator works by inserting all of the items in the list that it is used on into the list literal, for example a `[..["a", "b"], "c", ..["d"]]` will evaluate to a `["a", "b", "c", "d"]`. For records it works a bit different, you are able to override fields in records by inserting them later as so:
+```js
+let recordvalue: { value1: int; value2: str } = {
+	value1: 1
+	value2: "2"
+}
+
+print({
+	..recordvalue
+	value1: 2
+}) // prints out { value1: 2; value2: "2" }
+```
+The `..` operator can even be used with two records to create a new one:
+```js
+let recordvalue: { value1: int; value2: str } = {
+	value1: 1
+	value2: "2"
+}
+
+let recordvalue1: { value2: str; value3: bool } = {
+	value2: "3"
+	value3: false
+}
+
+print({
+	..recordvalue
+	..recordvalue1
+}) // prints out { value1: 1; value2: "3"; value3: false }
+```
+
 
 ## Notes:
 - All of the above can be [destructured](./destructuring.md).
