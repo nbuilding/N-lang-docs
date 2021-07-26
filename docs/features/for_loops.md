@@ -2,7 +2,7 @@
 
 For loops are a great way to run code a certain or changing amount of ways in a concise manner. For example, here is a for loop that `print`s all of the numbers 0-9
 ```js
-for (i in range(0, 10, 1)) { // range takes in a lower bound (inclusive), and upperbound (exclusive), and a step size are returns an int array
+for (i in range(0, 10, 1)) { // range takes in a lower bound (inclusive), and upper bound (exclusive), and a step size are returns an int array
 	print(i)
 } // This will print 0 - 9
 ```
