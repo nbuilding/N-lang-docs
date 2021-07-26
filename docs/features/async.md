@@ -14,7 +14,7 @@ benefits:
 
 - Tests can run reliably and the same every time they're run.
 
-- A compiler can optimise code by removing or caching unnecessary function
+- A compiler can optimize code by removing or caching unnecessary function
   calls.
 
 Of course, pure functions can't do everything. For example, reading from a file
