@@ -11,7 +11,7 @@ while (true) {
 	print("hi")
 }
 ```
-This ends up filling the screen with `hi`, but it can also be used for more productive measures as well.
+This ends up filling the screen with `hi`, but it can be used for more productive measures as well.
 
 Break is used in while loops, for loops, and if statements to break out of them whenever it is needed, here is an example:
 ```js
