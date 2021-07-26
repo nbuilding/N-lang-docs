@@ -1,6 +1,6 @@
 # Operators
 
-Operators are very useful for manipulating values, this will go though all of the operators currently in N:
+Operators are very useful for manipulating values, this will go through all of the operators currently in N:
 
 ### `OR`
 The OR operator (`||` or `|`) can be used on two booleans or two ints, it will either output a bool or a int depending on its inputs.
