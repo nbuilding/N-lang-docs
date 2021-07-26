@@ -97,7 +97,7 @@ print(val) // prints out { value1: 1; value2: "3"; value3: false }
 ## Char Literals
 
 ### Raw Char Literals
-This is the main way of turning a unicode character into a char:
+This is the main way of turning a Unicode character into a char:
 ```js
 let val = \{a}
 
