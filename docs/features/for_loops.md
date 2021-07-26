@@ -11,7 +11,7 @@ This is not all that the `for` loop can do. As you saw, the for loop above used 
 range(0, 10, 1) // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 range(0, 10, 2) // [0, 2, 4, 6, 8]
 ```
-This is used in the `for` loop example as the `for` loop iterates through each item in the `list`, setting `i` to the next item in the list before each cycle, allowing for useage of the `for` loop like so:
+This is used in the `for` loop example as the `for` loop iterates through each item in the `list`, setting `i` to the next item in the list before each cycle, allowing for usage of the `for` loop like so:
 ```js
 for (i in ["this", "is", "a", "test"]) {
 	print(i)
