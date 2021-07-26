@@ -264,6 +264,6 @@ let _ = websocket.createServer(
 ```
 
 ## Notes
-- All of these are written in python or js.
+- All of these are written in Python or JavaScript.
 - Later there may be a way to write your own, but this is unlikely.
 - The imported libraries are not records, but record-like.
