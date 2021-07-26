@@ -1,6 +1,6 @@
 # Match
 
-Match expressions are a faster and more effective way of checking values then repitions of if else statements, as instead of checking each one until the condition matches, it checks immediatly using a dictionary internally. Here is an example of a match statement:
+Match expressions are a faster and more effective way of checking values than reeditions of if-else statements, as instead of checking each one until the condition matches, it checks immediately using a dictionary internally. Here is an example of a match statement:
 ```js
 print(match ("Hello!") {
 	"Hello!" -> "hi"
