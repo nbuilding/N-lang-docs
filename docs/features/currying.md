@@ -10,7 +10,7 @@ let addOne = sum(1) // Here it is called with one less argument than intended; t
 
 print(addOne(2)) // Prints 3
 ```
-The `|>` operator goes well with currying as it takes in a function on the right side and applies the arugment on the left to the function on the right, allowing for useages like this:
+The `|>` operator goes well with currying as it takes in a function on the right side and applies the argument on the left to the function on the right, allowing for usages like this:
 ```js
 2
  |> sum(1) // Same as sum(1, 2) or sum(1)(2)
