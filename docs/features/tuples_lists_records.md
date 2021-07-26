@@ -13,7 +13,7 @@ let recordvalue:{ value: int } = {
 }
 let value = recordvalue.value
 ```
-Here this simply makes a record with one value, but a record can also be used as a simpler way or storing class-like data, without the useage of a class. Lastly is a list, which takes in a type and stores a list of values of that type, there is no limit to how many items a data can hold, here is and example of a list in action:
+Here this simply makes a record with one value, but a record can also be used as a simpler way of storing class-like data, without the usage of a class. Lastly is a list, which takes in a type and stores a list of values of that type, there is no limit to how many items a data can hold, here is an example of a list in action:
 ```js
 // This will declare a list of strings
 let listvalue:list[str] = ["a", "b", "c"]
