@@ -27,5 +27,5 @@ test
 This is not only limited to list literals as we have seen, making it a useful feature to read every item in a list.
 
 ## Notes:
-- Currently the only iterables that are registered are `list` values
+- Currently, the only iterables that are registered are `list` values
 - The old syntax will still run, but will give a deprecation warning
