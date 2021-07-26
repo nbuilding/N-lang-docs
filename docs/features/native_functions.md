@@ -248,7 +248,7 @@ let map = mapFrom([("a", 1), ("b", 2)])
 assert type map : map[str, int]
 ```
 
-**NOTE**: Maps allow functions and commands as keys, but the behaviour of these
+**NOTE**: Maps allow functions and commands as keys, but the behavior of these
 maps is undefined.
 
 ### `entries` : `[k, v] map[k, v] -> list[(k, v)]`
