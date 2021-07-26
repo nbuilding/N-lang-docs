@@ -200,7 +200,7 @@ assert value subsection(3, 2, [1, 2, 3]) == []
 Applies the given function to each item in the given list. If the function
 returns `none`, the item will not be included in the list; otherwise, the
 contained value in the `maybe` value will be included in the new list. Returns a
-new list containing the resulting `yes` contained values given by the function.
+new list containing the resulting `yes`-contained values given by the function.
 
 `filterMap` is intentionally generalised because `filter` and `map` can be
 easily defined in terms of `filterMap`.
