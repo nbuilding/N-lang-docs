@@ -23,7 +23,7 @@ class public will export both the type and constructor.
 
 After the keywords, specify the class name (in the above example, `Sheep`) and
 the arguments for the constructor, which have the same syntax as a function
-expression. By convention, class names are capitalised.
+expression. By convention, class names are capitalized.
 
 Then, enclosed in curly brackets (`{` and `}`) is the class body. The same
 statements that you can find in a normal N file can be placed inside a class
