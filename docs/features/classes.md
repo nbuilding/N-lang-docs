@@ -18,7 +18,7 @@ class pub Sheep [colour:str age:float name:str] {
 ```
 
 To create a class, start with the `class` keyword. You can make the class public
-by adding the `pub` keyword, like you would for variables and types. Making the
+by adding the `pub` keyword like you would for variables and types. Making the
 class public will export both the type and constructor.
 
 After the keywords, specify the class name (in the above example, `Sheep`) and
