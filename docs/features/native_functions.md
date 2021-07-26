@@ -145,7 +145,7 @@ nbuilding/N-lang#245.
 
 ### `len` : `[t] t -> int`
 
-Gets the length of the given value. The behaviour of `len` depends on the type
+Gets the length of the given value. The behavior of `len` depends on the type
 of value given; if the argument is a string or list, then it'll return its
 length (for strings, this is in Unicode characters, not code points or
 graphemes). Otherwise, it'll return zero.
