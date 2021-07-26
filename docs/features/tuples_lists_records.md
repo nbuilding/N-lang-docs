@@ -1,6 +1,6 @@
 # Tuples, Lists, and Records
 
-Tuples, lists, and records are all types that store multiple values, each of them all have their own use. Let us start with tuples, tuples are values that can store a set amount of values of different types. The main way to recover the values are to destructure the tuple. Here is an example of a tuple value:
+Tuples, lists, and records are all types that store multiple values, each of them all have their own use. Let us start with tuples, tuples are values that can store a set amount of values of different types. The main way to recover the values is to destructure the tuple. Here is an example of a tuple value:
 ```js
 // This will declare a simple tuple with a int and a char
 let tuplevalue:(int, char) = (1, \{a})
