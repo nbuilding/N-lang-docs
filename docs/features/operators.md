@@ -56,7 +56,7 @@ When the inputs are ints it will return an int which is the mathematical additio
 let val = 1 + 2 // 3
 ```
 
-When the inputs are floats it will return a float which is the mathematical addidtion of the two numbers: 
+When the inputs are floats it will return a float which is the mathematical addition of the two numbers: 
 ```js
 let val = 1.5 + 2.5 // 4.0
 ```
