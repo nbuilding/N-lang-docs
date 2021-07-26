@@ -114,7 +114,7 @@ print(val) // prints out a newline
 The currently supported escape codes are `\n`, `\t`, `\r`, `\v`, `\0`, `\f`, and `\b`.
 
 ### Unicode Escape Code Literals
-This is the main way of getting a unicode character from its hex index:
+This is the main way of getting a Unicode character from its hex index:
 ```js
 let val = \u{ff}
 
