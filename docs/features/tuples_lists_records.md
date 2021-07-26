@@ -7,7 +7,7 @@ let tuplevalue:(int, char) = (1, \{a})
 ```
 This makes a simple tuple with an `int` and a `char`. Next, let us take a look at records, records are used to store certain types and assign a name or key to each value, allowing for easier and more human-understandable usage like so:
 ```js
-// This will declare a record with a int called value and then get that from it
+// This will declare a record with an int called value and then get that from it
 let recordvalue:{ value: int } = {
 	value: 1 // There is either a newline or ; at the end
 }
