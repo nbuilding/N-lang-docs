@@ -59,7 +59,7 @@ curly brackets (`{` and `}`).
 (`:`) after the return type. You would expect the documentation to document
 this, but there's not that much information on it even for the people writing
 this, and it seems the implementations don't agree on it. There're also no tests
-specifying its behaviour and syntax.
+specifying its behavior and syntax.
 
 Functions are required to `return` a value with the proper type by the end of
 the function.
