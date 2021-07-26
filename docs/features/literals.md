@@ -1,6 +1,6 @@
 # Literals
 
-Literals are the raw values like `1` or `"a"` that are the main basis for values in N along with variables, this will go though all literals currently in N.
+Literals are the raw values like `1` or `"a"` that are the main basis for values in N along with variables, this will go through all literals currently in N.
 
 ## Number Literals
 
