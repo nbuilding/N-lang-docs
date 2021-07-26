@@ -114,8 +114,7 @@ let _ = times.sleep(1000)!
 ```
 
 However, if possible, avoid writing code this way, as it is error-prone. The
-type checker can help catch accidental omissions of the `!` operator, but `let _
-=` implies that the omission is intentional.
+type checker can help catch accidental omissions of the `!` operator, but `let _ =` implies that the omission is intentional.
 
 Remember that because functions have to be pure, non-procedural functions cannot
 call procedures. For this reason, you cannot use the `!` operator outside of
@@ -134,6 +133,8 @@ used inside non-procedural functions without the use of the `!` operator.
 However, in production, lone `print` statements may be optimised away because it
 is seen as a pure function.
 
-There is currently no reliable way to print text to stdout. Perhaps teh built-in
-module `SystemIO` may one day have a reliable `print` procedure that returns a
-`cmd` value to ensure it does not get optimised away.
+There is currently no reliable way to print text to stdout. In older versions of
+N, one could use the `fek` module's `paer` procedure, but this has been removed
+in later versions. Perhaps the built-in module `SystemIO` may one day have a
+reliable `print` procedure that returns a `cmd` value to ensure it does not get
+optimised away.
