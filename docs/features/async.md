@@ -5,7 +5,7 @@ input values, a function should always return the same output. This has several
 benefits:
 
 - Functions can be silently evaluated for debugging or eager evaluation (in a
-  REPL, for example) without causing side effects and changing the behaviour of
+  REPL, for example) without causing side effects and changing the behavior of
   the program. That is, the program won't notice whether its functions are being
   called more than once.
 
