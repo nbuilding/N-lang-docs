@@ -137,4 +137,4 @@ There is currently no reliable way to print text to stdout. In older versions of
 N, one could use the `fek` module's `paer` procedure, but this has been removed
 in later versions. Perhaps the built-in module `SystemIO` may one day have a
 reliable `print` procedure that returns a `cmd` value to ensure it does not get
-optimised away.
+optimized away.
