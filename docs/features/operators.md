@@ -115,7 +115,7 @@ let val = 2.5 / 0.5 // 5.0
 ```
 
 ### `SHIFTL` and `SHIFTR`
-The SHIFTL (`>>`) and SHIFTR (`<<`) operators take in two ints and will bit shift the int on the left the amount of times as the number on the right:
+The SHIFTL (`>>`) and SHIFTR (`<<`) operators take in two ints and will bit shift the int on the left the number of times as the number on the right:
 ```js
 let val = 1 << 3 // 0100 from 0001 or 4
 
