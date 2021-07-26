@@ -29,7 +29,7 @@ let websocketTest = websocket.connect({
   }
 }, "wss://echo.websocket.org")!
 ```
-In this example `websocket.send` is acutally a type alias for `str -> cmd[()]`. Here is is small but it is also useful to changing the type of many different, similar records if changes are needed, such as a `user` record to add another field, as it would be impractical and problematic to do it by hand.
+In this example `websocket.send` is actually a type alias for `str -> cmd[()]`. Here it is small, but it is also useful for changing the type of many different, similar records if changes are needed, such as a `user` record to add another field, as it would be impractical and problematic to do it by hand.
 
 ## Notes:
 - When printing out the type of a value that uses an alias as its type, it will not print out the alias' name.
