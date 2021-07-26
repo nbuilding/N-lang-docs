@@ -108,7 +108,7 @@ instead: `string[index]`.
 Gets a portion of a string given a start index (inclusive) then the end index
 (exclusive). The indices work as they do in Python, so they support negative
 indices; however, if the start index is after the end index, then `substring`
-returns an emtpy string.
+returns an empty string.
 
 ```ts
 assert value substring(0, 2, "abc") = "ab"
