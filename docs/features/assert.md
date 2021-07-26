@@ -12,7 +12,7 @@ if let <yes mod> = intoModule(imp "./test.n") {
 	print(getUnitTestResults(mod))
 }
 ```
-For more info on these functions please see the [native functions documentation](./native_functions.md). N uses assert internally for its type and value based checks. You are able to see them in the `tests/assertions` folder in the `N-lang` repo.
+For more info on these functions please see the [native functions documentation](./native_functions.md). N uses assert internally for its type- and value-based checks. You are able to see them in the `tests/assertions` folder in the `N-lang` repo.
 
 
 ## Notes:
