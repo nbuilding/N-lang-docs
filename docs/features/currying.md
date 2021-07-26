@@ -1,6 +1,6 @@
 # Currying and the Pipe Operator
 
-Currying is a useful way of pre-filling arguments in functions to stop the need of having to copy an argument serveral times. Currying occurs when a function is called with less arguments then it takes in, creating a new function that takes in the arguments that were not filled, and pre-filled values based on the arguments that were passed in. Here is an example of currying:
+Currying is a useful way of pre-filling arguments in functions to stop the need of having to copy an argument several times. Currying occurs when a function is called with fewer arguments than it takes in, creating a new function that takes in the arguments that were not filled, and pre-filled values based on the arguments that were passed in. Here is an example of currying:
 ```js
 let sum = [a:int b:int] -> int {
 	return a + b
