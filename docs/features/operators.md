@@ -66,7 +66,7 @@ When the inputs are both strings it will return a string which is the concatenat
 let val = "hel" + "llo" // "hello"
 ```
 
-When one of the inputs are a string and another is a char it will take the string version of the char and concatenate them:
+When one of the inputs is a string and another is a char it will take the string version of the char and concatenate them:
 ```js
 let val = \{h} + "ello" // "hello"
 ```
