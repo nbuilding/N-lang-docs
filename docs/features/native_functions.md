@@ -138,7 +138,7 @@ Removes whitespace characters.
 assert value strip(" abc ") = "abc"
 ```
 
-**NOTE**: The characters removed by `strip` are implementation defined. See
+**NOTE**: The characters removed by `strip` are implementation-defined. See
 nbuilding/N-lang#245.
 
 ## Lists
