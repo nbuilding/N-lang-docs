@@ -5,7 +5,7 @@ Literals are the raw values like `1` or `"a"` that are the main basis for values
 ## Number Literals
 
 ### Decimal Literals
-This is the plain and simple way of writing an int, it is a base ten number such as `10`:
+This is the plain and simple way of writing an int, it is a base-ten number such as `10`:
 ```js
 let val = 32
 
