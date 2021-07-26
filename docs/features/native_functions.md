@@ -47,7 +47,7 @@ assert value round(10.5) = 11
 assert value round(-10.5) = -10
 ```
 
-**NOTE**: The behaviour for `round`, `floor`, and `ceil` when given an infinity
+**NOTE**: The behavior for `round`, `floor`, and `ceil` when given an infinity
 or NaN is undefined. See nbuilding/N-lang#243.
 
 ### `floor` : `float -> int`
