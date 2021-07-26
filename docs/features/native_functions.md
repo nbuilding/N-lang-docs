@@ -93,7 +93,7 @@ assert value intCode(-1) = \u{FFFD}
 
 Gets the character (not grapheme or code point) at the given index. Since
 strings are probably not stored in UTF-32, this is probably O(n), but this is
-implementation defined. Negative indices aren't supported.
+implementation-defined. Negative indices aren't supported.
 
 ```ts
 assert value charAt(1, "abc") = yes(\{b})
