@@ -4,6 +4,7 @@ Here is a list of features in N that we have implemented and the documents that 
 
 - [Variables](./features/variables.md)
 - [Literals](./features/literals.md)
+- [Operators](./features/operators.md)
 - [Functions](./features/functions.md)
 - [Tuples, Lists, and Records](./features/tuples_lists_records.md)
 - [Destructuring](./features/destructuring.md)
