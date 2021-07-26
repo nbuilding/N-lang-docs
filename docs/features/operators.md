@@ -26,7 +26,7 @@ let val = val1 | val2 // 15 or:
 ```
 
 ### `AND`
-The AND operator (`&&` or `&`) can be used on two booleans or two ints, it will either output a bool or a int depending on its inputs.
+The AND operator (`&&` or `&`) can be used on two booleans or two ints, it will either output a bool or an int depending on its inputs.
 
 When the inputs are booleans it will return true if both of the values are `true`, the `&&` variation is the standard for bools:
 ```js
