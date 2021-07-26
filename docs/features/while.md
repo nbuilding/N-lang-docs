@@ -1,6 +1,6 @@
 # While, break, and continue
 
-While loops are great for running a peice of code over and over again until a condition is met, here is one that waits for the user to type hello:
+While loops are great for running a piece of code over and over again until a condition is met, here is one that waits for the user to type hello:
 ```js
 while ( SystemIO.inp("Please type `hello`: ")! /= "hello" ) {}
 ```
