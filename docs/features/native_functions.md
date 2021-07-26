@@ -202,7 +202,7 @@ returns `none`, the item will not be included in the list; otherwise, the
 contained value in the `maybe` value will be included in the new list. Returns a
 new list containing the resulting `yes`-contained values given by the function.
 
-`filterMap` is intentionally generalised because `filter` and `map` can be
+`filterMap` is intentionally generalized because `filter` and `map` can be
 easily defined in terms of `filterMap`.
 
 ```ts
