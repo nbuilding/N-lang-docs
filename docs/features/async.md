@@ -20,7 +20,7 @@ benefits:
 Of course, pure functions can't do everything. For example, reading from a file
 might give a different result each time. For these cases, N provides a special
 built-in type `cmd` (short for "command"), which is used for any procedure that
-has an unreliable return value or cannot be reliably optimised away if the
+has an unreliable return value or cannot be reliably optimized away if the
 return value is unused.
 
 Functions that return `cmd` values are known as "procedures." Procedures
