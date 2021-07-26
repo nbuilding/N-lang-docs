@@ -24,7 +24,7 @@ is
 a
 test
 ```
-This is not only limited to list literals as we have seen, making it a useful feature to read evey item in a list.
+This is not only limited to list literals as we have seen, making it a useful feature to read every item in a list.
 
 ## Notes:
 - Currently the only iterables that are registered are `list` values
