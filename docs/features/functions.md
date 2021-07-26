@@ -42,7 +42,7 @@ called.
 Function expressions start with a list of arguments, separated by spaces and
 enclosed by square brackets. Each argument consists of a [definite
 pattern](./destructuring.md), which can just be the argument name, followed by a
-colon (`:`) then the type annotation of the argument. Note that unlike `let`
+colon (`:`) then the type annotation of the argument. Note that, unlike `let`
 statements, argument type annotations cannot be inferred and thus are required.
 In the example above, the function expression has two arguments: `a` and `b`,
 both floats.
