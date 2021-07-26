@@ -145,7 +145,7 @@ When the values given are ints then it will return the remainder of a division b
 let val = 12 % 5 // 2
 ```
 
-When the values given are floats then it will return the reaminder of a division between those floats as a float:
+When the values given are floats then it will return the remainder of a division between those floats as a float:
 ```js
 let val = 1.5 % 1.0 // 0.5
 ```
