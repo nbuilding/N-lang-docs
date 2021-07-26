@@ -61,7 +61,7 @@ When the inputs are floats it will return a float which is the mathematical addi
 let val = 1.5 + 2.5 // 4.0
 ```
 
-When the inputs are both strings it will return a string which is the concatination of both of the strings:
+When the inputs are both strings it will return a string which is the concatenation of both of the strings:
 ```js
 let val = "hel" + "llo" // "hello"
 ```
