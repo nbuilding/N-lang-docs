@@ -86,7 +86,7 @@ lacking an explicit `return` statement.
 }
 ```
 
-**NOTE**: The above function may be optimised and never called during runtime
+**NOTE**: The above function may be optimized and never called during runtime
 because its return value is known at compile time (unit types only have one
 possible value during runtime).
 
