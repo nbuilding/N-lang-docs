@@ -130,7 +130,7 @@ noticeable.
 `print` is primarily used for debugging, to see if a value during runtime is
 correct or if code in a procedure is reached properly. This way, `print` can be
 used inside non-procedural functions without the use of the `!` operator.
-However, in production, lone `print` statements may be optimised away because it
+However, in production, lone `print` statements may be optimized away because it
 is seen as a pure function.
 
 There is currently no reliable way to print text to stdout. In older versions of
