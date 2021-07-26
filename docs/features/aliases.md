@@ -1,6 +1,6 @@
 # Type Aliases
 
-Type Aliases are great ways of compessing types into a more friendly form for usage in functions and other type declarations. It can be used as so:
+Type aliases are great ways of compressing types into a more friendly form for usage in functions and other type declarations. It can be used as so:
 ```js
 // This will create a simple alias for a record type
 alias test = {
