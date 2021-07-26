@@ -100,8 +100,8 @@ if let <yes text> = yes("hello") {
 ## `var` statements
 
 N has a `var` statement to change the values of variables. However, its
-behaviour is not defined, so its use is strongly discouraged. Its syntax only
-remains in N to maintain backwards compatibility.
+behavior is not defined, so its use is strongly discouraged. Its syntax only
+remains in N to maintain backward compatibility.
 
 ```js
 class Test {
