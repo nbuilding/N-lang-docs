@@ -166,7 +166,7 @@ let val = 1.5 ^ 2.0 // 2.25
 ### `VALUEACCESS`
 The VALUEACCESS operator (`[` x `]`) can be used to get items from lists, maps, and the `maybe` variations of each
 
-When the values given are a list and and int it will return the item in the index of the list as a `maybe`, if it cannot get that item it will return a `none`:
+When the values given are a list and an int it will return the item in the index of the list as a `maybe`, if it cannot get that item it will return a `none`:
 ```js
 let val = [1, 2, 3, 4][0] // yes(1)
 
