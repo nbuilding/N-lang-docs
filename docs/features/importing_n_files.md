@@ -20,7 +20,7 @@ let importedThings = imp "./import.n" // This goes though the file so it will pr
 print(importedThings.test) // Prints out hello
 //print(importedthigns.test2) will cause an error because it is not public
 ```
-The `pub` modifier is used to export values to other files. This is why it can be applied to nearly every type or variable declaration, as by default, all values are private, to prevent malicous or accidential messing of code in other files.
+The `pub` modifier is used to export values to other files. This is why it can be applied to nearly every type or variable declaration, as by default, all values are private, to prevent malicious or accidental messing of code in other files.
 
 Though it may be useful, circular imports are outlawed in the current system as there is no good way of making it work properly in the system we have defined.	
 
