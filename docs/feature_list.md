@@ -12,7 +12,7 @@ Here is a list of features in N that we have implemented and the documents that 
 - [If Statements](./features/if_statements.md)
 - [Match Expressions](./features/match.md)
 - [For Loops](./features/for_loops.md)
-- [While Loops, break, and continue](./features/while_loops.md)
+- [While Loops, break, and continue](./features/while.md)
 - [Internal Libraries](./features/internal_libraries.md)
 - [Importing .n files](./features/importing_n_files.md)
 - [Native Functions](./features/native_functions.md)
