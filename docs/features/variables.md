@@ -96,34 +96,3 @@ if let <yes text> = yes("hello") {
   assert value text == "hello"
 }
 ```
-
-## `var` statements
-
-N has a `var` statement to change the values of variables. However, its
-behavior is not defined, so its use is strongly discouraged. Its syntax only
-remains in N to maintain backward compatibility.
-
-```js
-class Test {
-  let pub property = 3
-
-  let pub change = [] -> () {
-    var property = 4
-  }
-}
-
-let function = [a:int] -> () {
-  var a = 2
-}
-
-let n = 1
-function(n)
-print(n)
-
-let test = Test()
-test.change()
-print(test.property)
-```
-
-The following program could print first either `1` or `2` then either `3` or
-`4`. Any N implementation is free to decide what `var` does.

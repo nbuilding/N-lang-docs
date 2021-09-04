@@ -3,7 +3,7 @@
 Operators are very useful for manipulating values, this will go through all of the operators currently in N:
 
 ### `OR`
-The OR operator (`||` or `|`) can be used on two booleans or two ints, it will either output a bool or an int depending on its inputs.
+The OR operator (`||` or `|`) can be used on two booleans, two ints or a maybe type and a value to default to. It will either output a bool or an int depending on its inputs.
 
 When the inputs are booleans it will return true if one of the values are `true`, the `||` variation is the standard for bools:
 ```js
@@ -23,6 +23,16 @@ let val = val1 | val2 // 15 or:
 | 0111 =
   1111
 */
+```
+
+When the inputs are a `maybe[t]` and a `t` then it will return the value in the maybe if it is in the yes varient or it will return the other input if it is `none`
+```js
+let val1: maybe[int] = none
+let val2 = yes(1)
+let val3 = 2
+
+let val = val1 | val3 // Since val1 is none it will return 2
+let val4 = val2 | val3 // Since val2 is a yes(1) it will return 1
 ```
 
 ### `AND`
