@@ -15,7 +15,7 @@ needing to import anything.
 
 ## Basics
 
-### `intInBase10` : `int -> str`
+### `intInBase10` : `(int) -> str`
 
 Converts an integer to a string.
 
@@ -29,7 +29,7 @@ assert value intInBase10(10) = "10"
 **NOTE**: To parse a string as an integer or float, use the `parse` or
 `parseSafe` function from the `json` module.
 
-### `toFloat` : `int -> float`
+### `toFloat` : `(int) -> float`
 
 Converts an integer to a float. Inverse of `round`, `floor`, and `ceil`.
 
@@ -37,7 +37,7 @@ Converts an integer to a float. Inverse of `round`, `floor`, and `ceil`.
 assert value toFloat(3) == 3.0
 ```
 
-### `round` : `float -> int`
+### `round` : `(float) -> int`
 
 Converts a float to an integer. Non-integers are rounded to the nearest integer;
 if the fractional part is 0.5, then it is rounded up. Inverse of `toFloat`.
@@ -50,7 +50,7 @@ assert value round(-10.5) = -10
 **NOTE**: The behavior for `round`, `floor`, and `ceil` when given an infinity
 or NaN is undefined. See nbuilding/N-lang#243.
 
-### `floor` : `float -> int`
+### `floor` : `(float) -> int`
 
 Converts a float to an integer, rounding down. Inverse of `toFloat`.
 
@@ -59,7 +59,7 @@ assert value floor(10.5) = 10
 assert value floor(-10.5) = -11
 ```
 
-### `ceil` : `float -> int`
+### `ceil` : `(float) -> int`
 
 Converts a float to an integer, rounding up. Inverse of `toFloat`.
 
@@ -69,7 +69,7 @@ assert value ceil(10.4) = 11
 assert value ceil(-10.5) = -10
 ```
 
-### `charCode` : `char -> int`
+### `charCode` : `(char) -> int`
 
 Gets the Unicode code point value for the given character. Inverse of `intCode`.
 
@@ -78,7 +78,7 @@ assert value charCode(\{a}) = 97
 assert value charCode(\{🕴}) = 0x1f574
 ```
 
-### `intCode` : `int -> char`
+### `intCode` : `(int) -> char`
 
 Converts the given Unicode code point to the corresponding character. Invalid
 code points are converted to � (U+FFFD, REPLACEMENT CHARACTER). Inverse of
@@ -89,7 +89,7 @@ assert value intCode(32) = \{ }
 assert value intCode(-1) = \u{FFFD}
 ```
 
-### `charAt` : `int -> str -> maybe[char]`
+### `charAt` : `(int, str) -> maybe[char]`
 
 Gets the character (not grapheme or code point) at the given index. Since
 strings are probably not stored in UTF-32, this is probably O(n), but this is
@@ -103,7 +103,7 @@ assert value charAt(-1, "abc") = none
 **NOTE**: N now has a special character access syntax that should be used
 instead: `string[index]`.
 
-### `substring` : `int -> int -> str -> str`
+### `substring` : `(int, int, str) -> str`
 
 Gets a portion of a string given a start index (inclusive) then the end index
 (exclusive). The indices work as they do in Python, so they support negative
@@ -119,7 +119,7 @@ assert value substring(2, 100, "hi") = ""
 assert value substring(5, 3, "hello world") = ""
 ```
 
-### `split` : `char -> str -> list[str]`
+### `split` : `(char, str) -> list[str]`
 
 Splits the given string by a character. Returns an empty array for an empty
 string.
@@ -130,7 +130,7 @@ assert value split(\{b}, "") = []
 assert value split(\{b}, "apple") = ["apple"]
 ```
 
-### `strip` : `str -> str`
+### `strip` : `(str) -> str`
 
 Removes whitespace characters.
 
@@ -143,7 +143,7 @@ nbuilding/N-lang#245.
 
 ## Lists
 
-### `len` : `[t] t -> int`
+### `len` : `[t] (t) -> int`
 
 Gets the length of the given value. The behavior of `len` depends on the type
 of value given; if the argument is a string or list, then it'll return its
@@ -155,7 +155,7 @@ assert value len("abc") = 3
 assert value len(100) = 0
 ```
 
-### `itemAt` : `[t] int -> list[t] -> maybe[t]`
+### `itemAt` : `[t] (int, list[t]) -> maybe[t]`
 
 Gets the item of a list by index. Does not support negative indices.
 
@@ -170,7 +170,7 @@ instead: `list[index]`.
 **NOTE**: The representation of lists in memory is implementation-defined, so
 item access may be O(n) in the worst case.
 
-### `append` : `[t] t -> list[t] -> list[t]`
+### `append` : `[t] (t, list[t]) -> list[t]`
 
 Returns a new list with the given item added to the end of the given list.
 
@@ -182,7 +182,7 @@ assert value list = [1, 2, 3]
 
 **NOTE**: `append` does not mutate the list.
 
-### `subsection` : `[t] int -> int -> list[t] -> list[t]`
+### `subsection` : `[t] (int, int, list[t]) -> list[t]`
 
 Returns a list containing a portion of the items in the given list; analogous to
 `substring` but for lists.
@@ -195,7 +195,7 @@ assert value subsection(-3, 1, [1, 2, 3]) == [1]
 assert value subsection(3, 2, [1, 2, 3]) == []
 ```
 
-### `filterMap` : `[a, b] (a -> maybe[b]) -> list[a] -> list[b]`
+### `filterMap` : `[a, b] ((a) -> maybe[b], list[a]) -> list[b]`
 
 Applies the given function to each item in the given list. If the function
 returns `none`, the item will not be included in the list; otherwise, the
@@ -211,7 +211,7 @@ assert value filterMap([value:int] -> maybe[int] {
 }, [0, 1, 2, 3, 4]) = [1, 2, 5, 10, 17]
 ```
 
-### `range` : `int -> int -> int -> list[int]`
+### `range` : `(int, int, int) -> list[int]`
 
 Returns a list of integers within the specified range. This takes a starting
 value (inclusive), an end value (exclusive), and a step value. This is based on
@@ -239,7 +239,7 @@ costly for performance when iterating over a large range.
 
 ## Maps
 
-### `mapFrom` : `[k, v] list[(k, v)] -> map[k, v]`
+### `mapFrom` : `[k, v] (list[(k, v)]) -> map[k, v]`
 
 Creates a map from the given list of key-value pairs. Inverse of `entries`.
 
@@ -251,7 +251,7 @@ assert type map : map[str, int]
 **NOTE**: Maps allow functions and commands as keys, but the behavior of these
 maps is undefined.
 
-### `entries` : `[k, v] map[k, v] -> list[(k, v)]`
+### `entries` : `[k, v] (map[k, v]) -> list[(k, v)]`
 
 Returns a list of key-value pairs from the map. Inverse of `mapFrom`.
 
@@ -261,7 +261,7 @@ assert value entries(map) = [("a", 1), ("b", 2)]
 
 **NOTE**: The order of the key-value pairs should be preserved.
 
-### `getValue` : `[k, v] k -> map[k, v] -> maybe[v]`
+### `getValue` : `[k, v] (k, map[k, v]) -> maybe[v]`
 
 Gets a value from the given map by the given key.
 
@@ -278,7 +278,7 @@ in the worst case.
 
 ## `maybe` values
 
-### `default` : `[t] t -> maybe[t] -> t`
+### `default` : `[t] (t, maybe[t]) -> t`
 
 Given a default value and a `maybe` value, returns the default value if the
 `maybe` value is `none`; otherwise, it returns the value contained in the
@@ -303,7 +303,7 @@ let default = [[t] defaultValue:t maybe:maybe[t]] -> t {
 
 ## Commands
 
-### `then` : `[a, b] (a -> cmd[b]) -> cmd[a] -> cmd[b]`
+### `then` : `[a, b] ((a) -> cmd[b], cmd[a]) -> cmd[b]`
 
 Returns a new command that first executes the given command, then runs the given
 function given the result from the given command, then executes the resulting
@@ -324,7 +324,7 @@ let then = [[a, b] function:(a -> cmd[b]) command:cmd[a]] -> cmd[b] {
 }
 ```
 
-### `parallel` : `[t] cmd[t] -> cmd[cmd[t]]`
+### `parallel` : `[t] (cmd[t]) -> cmd[cmd[t]]`
 
 Returns a new command that executes the given command in parallel. The result of
 this new command is another command that resolves when the given command
@@ -346,7 +346,7 @@ in parallel will be stopped.
 
 ## Printing for debugging
 
-### `printWithEnd` : `[t] str -> t -> t`
+### `printWithEnd` : `[t] (str, t) -> t`
 
 Prints the given value to stdout followed by the specified string and flushes,
 then returns the value. Non-string values are pretty-printed in an
@@ -362,7 +362,7 @@ assert value printed == 3.14
 Thus, this should only be used for development and debugging purposes, not for
 actual output to stdout.
 
-### `print` : `[t] t -> t`
+### `print` : `[t] (t) -> t`
 
 Equivalent to `printWithEnd("\n")` and thus shares its caveats.
 
@@ -372,7 +372,7 @@ assert value print("test") = "test"
 
 ## Runtime unit tests
 
-### `intoModule` : `[m] m -> maybe[module]`
+### `intoModule` : `[m] (m) -> maybe[module]`
 
 Attempts to convert the given type to a `module` value. Imports from `imp` will
 be successfully converted to a `module`; `intoModule` will return `none` for all
@@ -380,7 +380,7 @@ other values.
 
 See `getUnitTestResults` below for an example.
 
-### `getUnitTestResults` : `module -> list[{ hasPassed: bool; fileLine: int; unitTestType: str; possibleTypes: maybe[(str, str)] }]`
+### `getUnitTestResults` : `(module) -> list[{ hasPassed: bool; fileLine: int; unitTestType: str; possibleTypes: maybe[(str, str)] }]`
 
 Gets a list of assertion results from the given `module` value. Assertion
 results are a record with fields that depend on the type of assertion used in
