@@ -105,14 +105,6 @@ the following:
 times.sleep(1000)
 ```
 
-**NOTE**: The Python implementation does not support the use of `!` in
-statements. In order to sleep for 1000 milliseconds, one must write the
-following, discarding the `()` result from `times.sleep`'s command.
-
-```js
-let _ = times.sleep(1000)!
-```
-
 However, if possible, avoid writing code this way, as it is error-prone. The
 type checker can help catch accidental omissions of the `!` operator, but `let _ =` implies that the omission is intentional.
 
