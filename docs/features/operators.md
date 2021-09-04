@@ -214,3 +214,8 @@ The NOT operator (`~` or `not`) takes in a bool invert the bool:
 ```js
 let val = ~true // false
 ```
+
+It can also take in a `maybe` and returns true if it is `none` and false if it is a `yes`:
+```js
+let val = ~none // true
+```
