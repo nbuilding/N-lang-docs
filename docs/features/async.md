@@ -41,8 +41,8 @@ value that has a result type of `maybe[str]`; this is represented in a function 
 ```js
 import FileIO
 
-let printFile = [maybeFile: maybe[str]] -> cmd[()] {
-	if let <yes contents> = maybeFile {
+let printFile = (maybeFile: maybe[str]) -> cmd[()] {
+	if let yes(contents) = maybeFile {
 		print(contents)
 	} else {
 		print("hello.txt does not exist!")
@@ -74,11 +74,11 @@ syntactic sugar for chaining `cmd` values one after another using the `!`
 import times
 import FileIO
 
-let main = [] -> cmd[()] {
+let main = () -> cmd[()] {
 	FileIO.write(
 		"fruit.txt",
 		"It has been "
-			+ intInBase10(floor(times.getTime()!))
+			+ (times.getTime()!).floor().toString()
 			+ "ms since the UNIX epoch.",
 	)!
 	for (fruit in ["apple", "orange", "banana"]) {
@@ -102,19 +102,8 @@ procedures. Omitting it will simply return the `cmd` value and discard it, like
 the following:
 
 ```js
-times.sleep(1000)
+times.sleep(1000);
 ```
-
-**NOTE**: The Python implementation does not support the use of `!` in
-statements. In order to sleep for 1000 milliseconds, one must write the
-following, discarding the `()` result from `times.sleep`'s command.
-
-```js
-let _ = times.sleep(1000)!
-```
-
-However, if possible, avoid writing code this way, as it is error-prone. The
-type checker can help catch accidental omissions of the `!` operator, but `let _ =` implies that the omission is intentional.
 
 Remember that because functions have to be pure, non-procedural functions cannot
 call procedures. For this reason, you cannot use the `!` operator outside of
@@ -135,6 +124,5 @@ is seen as a pure function.
 
 There is currently no reliable way to print text to stdout. In older versions of
 N, one could use the `fek` module's `paer` procedure, but this has been removed
-in later versions. Perhaps the built-in module `SystemIO` may one day have a
-reliable `print` procedure that returns a `cmd` value to ensure it does not get
-optimized away.
+in later versions. Now the built in module `SystemIO` has `sendSTDOUT`, which
+takes in any value and writes it to the stdout.

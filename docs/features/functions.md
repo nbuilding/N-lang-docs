@@ -9,7 +9,7 @@ function named `getPi` that takes a `()` (the unit type) and returns a float.
 Then, `getPi` is called and printed.
 
 ```js
-let getPi = [] -> float {
+let getPi = () -> float {
 	return 3.141592653589793
 }
 
@@ -20,7 +20,7 @@ The above definition benefits from type inference and syntactic sugar. The
 following code is a more verbose equivalent of the above example.
 
 ```js
-let getPi: () -> float = [_: ()] -> float {
+let getPi: () -> float = (_: ()])-> float {
 	return 3.141592653589793
 }
 
@@ -34,13 +34,13 @@ the function expression usable; it needs to be stored somewhere before it can be
 called.
 
 ```js
-[a:float b:float] -> float {
+(a:float, b:float) -> float {
 	return (a^2 + b^2)^0.5
 }
 ```
 
 Function expressions start with a list of arguments, separated by spaces and
-enclosed by square brackets. Each argument consists of a [definite
+enclosed by parenthesis. Each argument consists of a [definite
 pattern](./destructuring.md), which can just be the argument name, followed by a
 colon (`:`) then the type annotation of the argument. Note that, unlike `let`
 statements, argument type annotations cannot be inferred and thus are required.
@@ -50,16 +50,11 @@ both floats.
 After the arguments, there is an arrow (`->`) and then the return type
 annotation. Like the function arguments, the return type annotation cannot be
 inferred and is thus also required. In the above example, the function returns a
-float.
+float. If this arrow is ommited then N is forced to assume that the function returns
+a `()`
 
 Then, after the return type is the body of the function: statements enclosed by
 curly brackets (`{` and `}`).
-
-**NOTE**: N supposedly has "anonymous function expressions" that use a colon
-(`:`) after the return type. You would expect the documentation to document
-this, but there's not that much information on it even for the people writing
-this, and it seems the implementations don't agree on it. There're also no tests
-specifying its behavior and syntax.
 
 Functions are required to `return` a value with the proper type by the end of
 the function.
@@ -67,10 +62,11 @@ the function.
 ### Syntactic sugar for `()`
 
 If the function expression has no arguments, the function is assumed to take a
-`()`, a unit value.
+`()`, a unit value. And if it does not include an `-> returntype` then the return
+type is assumed to be a `()`.
 
 ```ts
-assert type [] -> int {
+assert type () -> int {
 	return 3
 } : () -> int
 ```
@@ -81,7 +77,7 @@ convenience. The following example is valid, despite the function expression
 lacking an explicit `return` statement.
 
 ```js
-[] -> () {
+() {
 	print("Hello")
 }
 ```
@@ -100,7 +96,7 @@ The following code declares a function `add` that takes two integers and returns
 an integer.
 
 ```ts
-let add = [a:int b:int] -> int {
+let add = (a:int, b:int) -> int {
 	return a + b
 }
 ```
@@ -116,7 +112,7 @@ Thus, it is perfectly valid to only give one argument to `add` for **partial
 application**.
 
 ```ts
-let addOne = add(1)
+let addOne = add(1);
 ```
 
 `addOne` is a function that takes a single integer and returns the integer
@@ -132,73 +128,21 @@ that can operate on values with certain options preset. For this reason, it is
 good practice in N to have any options arguments as the first arguments for a
 function, then the value to transform as the last argument.
 
-The built-in function `itemAt` is a good example of this practice. It takes an
-index first, then the list. Thus, a more specific function that gets the first
-or second item of a list can be easily defined by only supplying an index to the
-`itemAt`.
-
-```js
-let first = itemAt(0)
-let second = itemAt(1)
-```
-
 ### Type annotations
 
 To demonstrate that functions with multiple arguments actually take one argument
-at a time and then return another function, the type annotation of the `add`
-function from above is `int -> (int -> int)`.
+at a time and then return another function, before we had it so that the type
+annotation of the `add` function from above is `int -> (int -> int)`.
 
 ```ts
 assert type add : int -> int -> int
 ```
 
-**NOTE**: The parentheses are optional if the return type of a function is
-another function. However, if the argument type is a function, then parentheses
-are needed. For example, `str -> (str -> str)` is a function that takes two
-strings, while `(str -> str) -> str` is a function that takes another function
-that takes a string.
-
-Here are a few other examples with other functions defined in the examples
-above. Some of these type annotations use type variables, which you can read
-about at [Type variables](./generic.md).
+But now, to avoid confusion, we have the arguments in a tuple and the return
+type ouside as so
 
 ```ts
-assert type [a:float b:float] -> float {
-	return (a^2 + b^2)^0.5
-} : float -> float -> float
-
-assert type [] -> () {
-	print("Hello")
-} : () -> ()
-
-assert type addOne : int -> int
-
-assert type first : [t] list[t] -> maybe[t]
-assert type second : [t] list[t] -> maybe[t]
-```
-
-**TL;DR**: You can think of function type annotations as `[argument 1] -> [argument 2] -> ... -> [return type]`.
-
-### Calling functions with multiple arguments at once
-
-`substring` is a built-in function that takes a start index (inclusive), end
-index (exclusive), then a string to slice.
-
-Since functions are curried, it is possible to give all three arguments to
-`substring` like the following:
-
-```js
-assert value substring(1)(3)("sheep") == "he"
-```
-
-However, having to surround each argument with parentheses is quite cumbersome
-and verbose. N provides syntactic sugar for passing multiple arguments to a
-function at once in sequence by separating each argument with a comma. This is
-similar to C-style function calling used by a few programming languages, so
-users of those languages should be familiar with this syntax.
-
-```js
-assert value substring(1, 3, "sheep") == "he"
+assert type add : (int, int) -> int
 ```
 
 #### More syntactic sugar with `()`
@@ -213,14 +157,14 @@ context. Immmediately invoked function expressions (IIFEs) can be used to
 include multiple statements and return a value.
 
 ```js
-let deltaXSquared = [] -> float {
+let deltaXSquared = () -> float {
 	let deltaX = x1 - x2
 	return deltaX * deltaX
 }()
 
 // Alternative
 
-let deltaXSquared = () |> [] -> float {
+let deltaXSquared = () |> () -> float {
 	let deltaX = x1 - x2
 	return deltaX * deltaX
 }
@@ -235,7 +179,7 @@ command for an N program.
 ```js
 import times
 
-let pub main = [] -> cmd[()] {
+let pub main = () -> cmd[()] {
 	print("Wait a second...")
 	times.sleep(1000)!
 	print("Thanks.")

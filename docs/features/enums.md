@@ -3,13 +3,13 @@
 In making a video game, for example, you may want to keep track of the state of your game. In N, enums are an excellent data type for storing a specific possibility out of multiple possibilities. You could keep track of your game like this:
 
 ```ts
-type state = mainMenu | ongoing | ended
+type state = mainMenu | ongoing | ended;
 ```
 
 `mainMenu`, `ongoing`, and `ended` are **variants** of the enum `state`. This allows you to store the state of your game in a variable, and its value will have to be one of those three variants:
 
 ```ts
-let gameState: state = ended
+let gameState: state = ended;
 ```
 
 An enum type declaration starts with the keyword `type` followed by the name of the enum type, which you can use in type annotations. The type name is followed by an equal sign (`=`) and then the variants of the enum, separated by pipes (`|`). Each of these variants will be introduced as values in your code, so you can use them as constants.
@@ -21,7 +21,7 @@ assert type mainMenu : state
 There are several enums built into N that you can use right out of the box. `bool` is nothing more than an enum with two variants, `true` and `false`:
 
 ```ts
-type bool = true | false
+type bool = true | false;
 ```
 
 Back to your video game, perhaps you also want to store the health of the player in your game, but only while the game is running, and when the game ends, you want to store the name of the player so they can be added to a leaderboard. Enum variants are also capable of storing other values. Let's modify `state` from the above example to store the player health and name in our enum:
@@ -70,7 +70,7 @@ Enums are not limited to keeping track of state. N provides built-in enums `mayb
 type maybe[t]
 	| <yes t>
 	| none
- 
+
 type result[o, e]
 	| <ok o>
 	| <err e>
@@ -79,10 +79,10 @@ type result[o, e]
 These types allow programs in N to avoid runtime errors because the type checker encourages programs to check to ensure that the enums are a specific variant. The `maybe` type helps avoid null pointer exceptions, and `result` allows functions to return errors without implicitly throwing unexpected uncaught runtime errors. You can use `maybe` and `result` like ordinary enums:
 
 ```ts
-let divideBy2 = [number: int] -> result[int, string] {
-	if number % 2 = 1 {
+let divideBy2 = (number: int) -> result[int, string] {
+	if number % 2 == 1 {
 		return err("Odd numbers are not divisible by two.")
-	} else if not number = 42 {
+	} else if number != 42 {
 		return ok(number / 2)
 	} else {
 		return err("I have decided to refuse to divide 42 by two.")
@@ -91,7 +91,7 @@ let divideBy2 = [number: int] -> result[int, string] {
 ```
 
 ```ts
-if let <yes char> = SystemIO.inp("Give me a character.")! |> charAt(0) {
+if let yes(char) = (SystemIO.inp("Give me a character.")!).charAt(0) {
 	print(char)
 } else {
 	print("All I asked for was ONE character, and you gave me NOTHING. You MONSTER!")
@@ -102,12 +102,12 @@ When returning errors, it is helpful to create your own error enum type so that 
 
 ```ts
 type httpError =
-	| <invalidUrl str>
+	| invalidUrl(str)
 	| connectionFailed
-	| <statusCode int response>
+	| statusCode(int, response)
 ```
 
 ## Notes
+
 - Enums can be used with [generics](./generic.md).
 - By convention, enum names are lowerCamelCase like identifiers, unlike most other programming languages.
-- Angle brackets are used for variants with fields because historically, the function call syntax used angle brackets, and when that was changed to C-style function calls, enum declarations remained unchanged by accident.
