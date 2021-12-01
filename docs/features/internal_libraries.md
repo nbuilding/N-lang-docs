@@ -162,6 +162,12 @@ Requires the `COMMAND_ALLOW` environment variable to be set to `true`, takes in 
 SystemIO.run("echo hello")!
 ```
 
+`SystemIO.sendSTDOUT: [t] (t) -> cmd[t]`:
+Prints to the STDOUT, this does not append a newline to the end.
+```js
+SystemIO.sendSTDOUT("Printing to the STDOUT\n")!
+```
+
 ## `times`
 
 Used for stopping the program and getting the current time:
@@ -177,7 +183,7 @@ Takes in an integer and stops the thread it is in for that many milliseconds
 times.sleep(1000)!
 ```
 
-`times.getTime: () -> cmd[float]`:
+`times.getTime: (()) -> cmd[float]`:
 Returns the current epoch time
 
 ```js

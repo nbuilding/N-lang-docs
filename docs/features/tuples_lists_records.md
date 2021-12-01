@@ -78,3 +78,4 @@ print({
 - `append` returns a list.
 - `itemAt` will return a `maybe` for null saftey, see how to deal with that [here](./enums.md).
 - Most of the list functions are intended to be used with the [pipe operator](./currying.md).
+- You are able to attempt to access a value on a `maybe` record type, this will return a `maybe` which is `none` if the record is `none` and a `yes` if the record is a `yes`
