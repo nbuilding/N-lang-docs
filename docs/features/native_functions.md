@@ -293,7 +293,7 @@ This is equivalent to:
 
 ```ts
 let default = [[t] defaultValue:t maybe:maybe[t]] -> t {
-	if let <yes value> = maybe {
+	if let yes(value) = maybe {
 		return value
 	} else {
 		return defaultValue
@@ -403,7 +403,7 @@ field, a boolean that represents whether the assertion passed.
 - `possibleTypes`, which is always `none`
 
 ```ts
-if let <yes module> = intoModule(imp "./imports/unit-test.n") {
+if let yes(module) = intoModule(imp "./imports/unit-test.n") {
 	let results = getUnitTestResults(module)
 
 	assert value len(results) == 4
@@ -425,7 +425,7 @@ if let <yes module> = intoModule(imp "./imports/unit-test.n") {
 	for (result in (results |> subsection(2, 4))) {
 		assert value result.hasPassed
 		assert value result.unitTestType == "type"
-		assert value if let <yes _> = result.possibleTypes { true } else { false }
+		assert value if let yes(_) = result.possibleTypes { true } else { false }
 	}
 
 	assert value (results |> itemAt(2) |> default({

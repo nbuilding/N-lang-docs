@@ -7,6 +7,16 @@ Tuples, lists, and records are all types that store multiple values, each of the
 let tuplevalue:(int, char) = (1, \{a})
 ```
 
+You can use `..` on tuples to add them into functions:
+
+```js
+let subsectionTuple = (1, 4)
+
+print(range(1, 10, 1).subsection(..subsectionTuple))
+```
+
+You can also do this with tuple literals too, though it may be inefficient.
+
 This makes a simple tuple with an `int` and a `char`. Next, let us take a look at records, records are used to store certain types and assign a name or key to each value, allowing for easier and more human-understandable usage like so:
 
 ```js
@@ -21,14 +31,16 @@ Here this simply makes a record with one value, but a record can also be used as
 
 ```js
 // This will declare a list of strings
-let listvalue: list[str] = ['a', 'b', 'c'],
+let mut listvalue: list[str] = ['a', 'b', 'c'],
 
-var listvalue = append('d', listvalue), // Append is not a void function
+listvalue = listvalue.append('d'), // Append is not a void function
 
-let listindexvalue = itemAt(1, listvalue), // This returns a maybe which will need to be defaulted
+let listindexvalue = listvalue.itemAt(1), // This returns a maybe which will need to be defaulted
 
 print(listindexvalue),
 ```
+
+
 
 To edit a record or set an item in a list you are able to use the `..` operator, here is an example of its use:
 

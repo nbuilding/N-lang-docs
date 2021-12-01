@@ -123,7 +123,7 @@ This takes in a url, request type, headers, and data to send and gives back the 
 request.post("github.com", "GET", none, none)! // Gets github.com's base page
 ```
 
-`request.createServer: int -> ( str -> str -> json.value -> cmd[{ responseCode: int, data: list[int], headers: map[str, str], mimetype: str }] ) -> cmd[()]`:
+`request.createServer: int -> ( (str, str, json.value) -> cmd[{ responseCode: int, data: list[int], headers: map[str, str], mimetype: str }] ) -> cmd[()]`:
 This takes in a port to open to and a function which takes in a path, request type, and additional data and returns a response code, the data in bytes, headers, and the MIME type for the data given and opens a server on `http://localhost:<PORTNUMBER>`
 
 ```js
@@ -220,7 +220,7 @@ alias user = {
 }
 ```
 
-`websocket.connect: { onOpen: websocket.send -> cmd[bool], onMessage: websocket.send -> cmd[bool] } -> str -> cmd[maybe[str]]`:
+`websocket.connect: ({ onOpen: websocket.send -> cmd[bool], onMessage: websocket.send -> cmd[bool] }, str) -> cmd[maybe[str]]`:
 Connects to a websocket, `onOpen` and `onMessage` run in parallel and if either return `true` it will exit out of both, the `str` is an error message that my occur when connecting.
 
 ```js
@@ -238,23 +238,23 @@ let websocketTest = websocket.connect({
 }, "wss://echo.websocket.org")!
 ```
 
-`websocket.createServer: int -> { onConnect: websocket.user -> str -> cmd[bool], onMessage: websocket.user -> str -> cmd[bool], onDisconnect: websocket.user -> { code: int, reson: str } -> cmd[bool] }`:
+`websocket.createServer: ({ onConnect: (websocket.user, str) -> cmd[bool], onMessage: (websocket.user, str) -> cmd[bool], onDisconnect: (websocket.user, { code: int, reson: str }) -> cmd[bool] }, int) -> cmd[()]`:
 Opens a websocket server on `ws://localhost:<PORTNUMBER>`. Runs `onConnect` when a user connects, `onMessage` runs when a user sends a message, and `onDisconnect` will run when a user disconnects, if either of these return `true` then the websocket server will close.
 
 ```js
 let _ = websocket.createServer(
   {
-    onConnect: [user:websocket.user path:str] -> cmd[bool] {
+    onConnect: (user:websocket.user, path:str) -> cmd[bool] {
       print(user)
       let _ = user.send("hello")!
       return false
     }
-    onMessage: [user:websocket.user message:str] -> cmd[bool] {
+    onMessage: (user:websocket.user, message:str) -> cmd[bool] {
       print(message)
       let _ = user.send(message)!
       return false
     }
-    onDisconnect: [user:websocket.user exitData:maybe[{ code: int, reason:str }]] -> cmd[bool] { return false }
+    onDisconnect: (user:websocket.user, exitData:maybe[{ code: int, reason:str }]) -> cmd[bool] { return false }
   },
   3000
 )!

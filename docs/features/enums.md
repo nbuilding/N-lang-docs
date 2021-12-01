@@ -29,11 +29,11 @@ Back to your video game, perhaps you also want to store the health of the player
 ```ts
 type state =
 	| mainMenu
-	| <ongoing int>
-	| <ended str>
+	| ongoing(int)
+	| ended(str)
 ```
 
-Now, the `ongoing` and `ended` variants each contain one field, but each variant can have a field of a different type. In N, when variants contain at least one field, they need to be surrounded in angle brackets (`<` and `>`). Of course, enum variants aren't limited to just one field; they can contain multiple fields of tuples, lists, or even other enums.
+Now, the `ongoing` and `ended` variants each contain one field, but each variant can have a field of a different type. In N, when variants contain at least one field, these need to be in the function syntax with the name first and the types wrapped in parenthesis, seperated by commas. Of course, enum variants aren't limited to just one field; they can contain multiple fields of tuples, lists, or even other enums.
 
 Because `ongoing` takes a field of type `int`, the type declaration provides a function named `ongoing` that takes an int and returns a `state`:
 
@@ -57,7 +57,7 @@ if gameState = mainMenu {
 Now that we've stored values inside an enum variant, how would one get the value back out? Since an enum value might be one of multiple variants, we need to use an `if let` statement or expression to check if an enum value is a certain variant. `if let` is followed by a conditional pattern. For example, to determine whether the game is ongoing:
 
 ```ts
-if let <ongoing health> = gameState {
+if let ongoing(health) = gameState {
 	print("Your health is at " + intInBase10(health) + " HP.")
 }
 ```
@@ -68,12 +68,12 @@ Enums are not limited to keeping track of state. N provides built-in enums `mayb
 
 ```ts
 type maybe[t]
-	| <yes t>
+	| yes(t)
 	| none
 
 type result[o, e]
-	| <ok o>
-	| <err e>
+	| ok(o)
+	| err(e)
 ```
 
 These types allow programs in N to avoid runtime errors because the type checker encourages programs to check to ensure that the enums are a specific variant. The `maybe` type helps avoid null pointer exceptions, and `result` allows functions to return errors without implicitly throwing unexpected uncaught runtime errors. You can use `maybe` and `result` like ordinary enums:

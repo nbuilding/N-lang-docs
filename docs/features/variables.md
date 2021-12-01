@@ -92,7 +92,7 @@ Variables are also created by conditional patterns in [`if let`](./if_statements
 example, `text` is usable like a variable containing a string.
 
 ```js
-if let <yes text> = yes("hello") {
+if let yes(text) = yes("hello") {
   assert value text == "hello"
 }
 ```
