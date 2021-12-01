@@ -43,8 +43,8 @@ Converts a float to an integer. Non-integers are rounded to the nearest integer;
 if the fractional part is 0.5, then it is rounded up. Inverse of `toFloat`.
 
 ```ts
-assert value round(10.5) = 11
-assert value round(-10.5) = -10
+assert value round(10.5) == 11
+assert value round(-10.5) == -10
 ```
 
 **NOTE**: The behavior for `round`, `floor`, and `ceil` when given an infinity
@@ -55,8 +55,8 @@ or NaN is undefined. See nbuilding/N-lang#243.
 Converts a float to an integer, rounding down. Inverse of `toFloat`.
 
 ```ts
-assert value floor(10.5) = 10
-assert value floor(-10.5) = -11
+assert value floor(10.5) == 10
+assert value floor(-10.5) == -11
 ```
 
 ### `ceil` : `(float) -> int`
@@ -64,9 +64,9 @@ assert value floor(-10.5) = -11
 Converts a float to an integer, rounding up. Inverse of `toFloat`.
 
 ```ts
-assert value ceil(10.5) = 11
-assert value ceil(10.4) = 11
-assert value ceil(-10.5) = -10
+assert value ceil(10.5) == 11
+assert value ceil(10.4) == 11
+assert value ceil(-10.5) == -10
 ```
 
 ### `charCode` : `(char) -> int`
@@ -74,8 +74,8 @@ assert value ceil(-10.5) = -10
 Gets the Unicode code point value for the given character. Inverse of `intCode`.
 
 ```ts
-assert value charCode(\{a}) = 97
-assert value charCode(\{🕴}) = 0x1f574
+assert value charCode(\{a}) == 97
+assert value charCode(\{🕴}) == 0x1f574
 ```
 
 ### `intCode` : `(int) -> char`
@@ -85,8 +85,8 @@ code points are converted to � (U+FFFD, REPLACEMENT CHARACTER). Inverse of
 `charCode`.
 
 ```ts
-assert value intCode(32) = \{ }
-assert value intCode(-1) = \u{FFFD}
+assert value intCode(32) == \{ }
+assert value intCode(-1) == \u{FFFD}
 ```
 
 ### `charAt` : `(int, str) -> maybe[char]`
@@ -96,8 +96,8 @@ strings are probably not stored in UTF-32, this is probably O(n), but this is
 implementation-defined. Negative indices aren't supported.
 
 ```ts
-assert value charAt(1, "abc") = yes(\{b})
-assert value charAt(-1, "abc") = none
+assert value charAt(1, "abc") == yes(\{b})
+assert value charAt(-1, "abc") == none
 ```
 
 **NOTE**: N now has a special character access syntax that should be used
@@ -111,12 +111,12 @@ indices; however, if the start index is after the end index, then `substring`
 returns an empty string.
 
 ```ts
-assert value substring(0, 2, "abc") = "ab"
-assert value substring(-3, -1, "apple sauce") = "uc"
-assert value substring(0, -1, "banana jam") = "banana ja"
-assert value substring(0, 100, "hi") = "hi"
-assert value substring(2, 100, "hi") = ""
-assert value substring(5, 3, "hello world") = ""
+assert value substring(0, 2, "abc") == "ab"
+assert value substring(-3, -1, "apple sauce") == "uc"
+assert value substring(0, -1, "banana jam") == "banana ja"
+assert value substring(0, 100, "hi") == "hi"
+assert value substring(2, 100, "hi") == ""
+assert value substring(5, 3, "hello world") == ""
 ```
 
 ### `split` : `(char, str) -> list[str]`
@@ -125,9 +125,9 @@ Splits the given string by a character. Returns an empty array for an empty
 string.
 
 ```ts
-assert value split(\{b}, "abc") = ["a", "c"]
-assert value split(\{b}, "") = []
-assert value split(\{b}, "apple") = ["apple"]
+assert value split(\{b}, "abc") == ["a", "c"]
+assert value split(\{b}, "") == []
+assert value split(\{b}, "apple") == ["apple"]
 ```
 
 ### `strip` : `(str) -> str`
@@ -135,7 +135,7 @@ assert value split(\{b}, "apple") = ["apple"]
 Removes whitespace characters.
 
 ```ts
-assert value strip(" abc ") = "abc"
+assert value strip(" abc ") == "abc"
 ```
 
 **NOTE**: The characters removed by `strip` are implementation-defined. See
@@ -151,8 +151,8 @@ length (for strings, this is in Unicode characters, not code points or
 graphemes). Otherwise, it'll return zero.
 
 ```ts
-assert value len("abc") = 3
-assert value len(100) = 0
+assert value len("abc") == 3
+assert value len(100) == 0
 ```
 
 ### `itemAt` : `[t] (int, list[t]) -> maybe[t]`
@@ -160,8 +160,8 @@ assert value len(100) = 0
 Gets the item of a list by index. Does not support negative indices.
 
 ```ts
-assert value itemAt(1, [1, 2, 3]) = yes(2)
-assert value itemAt(-1, [1, 2, 3]) = none
+assert value itemAt(1, [1, 2, 3]) == yes(2)
+assert value itemAt(-1, [1, 2, 3]) == none
 ```
 
 **NOTE**: N now has a special list item access syntax that should be used
@@ -175,9 +175,9 @@ item access may be O(n) in the worst case.
 Returns a new list with the given item added to the end of the given list.
 
 ```ts
-let list = [1, 2, 3]
-assert value append(4, list) = [1, 2, 3, 4]
-assert value list = [1, 2, 3]
+let list == [1, 2, 3]
+assert value append(4, list) == [1, 2, 3, 4]
+assert value list == [1, 2, 3]
 ```
 
 **NOTE**: `append` does not mutate the list.
@@ -208,7 +208,7 @@ easily defined in terms of `filterMap`.
 ```ts
 assert value filterMap([value:int] -> maybe[int] {
 	return yes(value * value + 1)
-}, [0, 1, 2, 3, 4]) = [1, 2, 5, 10, 17]
+}, [0, 1, 2, 3, 4]) == [1, 2, 5, 10, 17]
 ```
 
 ### `range` : `(int, int, int) -> list[int]`
@@ -223,14 +223,14 @@ it supports negative step values.
 integers.
 
 ```ts
-assert value range(0, 3, 1) = [0, 1, 2]
-assert value range(0, 10, 1) = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-assert value range(1, 11, 1) = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-assert value range(0, 30, 5) = [0, 5, 10, 15, 20, 25]
-assert value range(0, 10, 3) = [0, 3, 6, 9]
-assert value range(0, -10, -1) = [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
-assert value range(0, 0, 1) = []
-assert value range(1, 0, 1) = []
+assert value range(0, 3, 1) == [0, 1, 2]
+assert value range(0, 10, 1) == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+assert value range(1, 11, 1) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+assert value range(0, 30, 5) == [0, 5, 10, 15, 20, 25]
+assert value range(0, 10, 3) == [0, 3, 6, 9]
+assert value range(0, -10, -1) == [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+assert value range(0, 0, 1) == []
+assert value range(1, 0, 1) == []
 ```
 
 **NOTE**: The representation of lists in memory is implementation-defined, so an
@@ -244,7 +244,7 @@ costly for performance when iterating over a large range.
 Creates a map from the given list of key-value pairs. Inverse of `entries`.
 
 ```ts
-let map = mapFrom([("a", 1), ("b", 2)])
+let map == mapFrom([("a", 1), ("b", 2)])
 assert type map : map[str, int]
 ```
 
@@ -256,7 +256,7 @@ maps is undefined.
 Returns a list of key-value pairs from the map. Inverse of `mapFrom`.
 
 ```ts
-assert value entries(map) = [("a", 1), ("b", 2)]
+assert value entries(map) == [("a", 1), ("b", 2)]
 ```
 
 **NOTE**: The order of the key-value pairs should be preserved.
@@ -266,8 +266,8 @@ assert value entries(map) = [("a", 1), ("b", 2)]
 Gets a value from the given map by the given key.
 
 ```ts
-assert value getValue("b", map) = yes(2)
-assert value getValue("c", map) = none
+assert value getValue("b", map) == yes(2)
+assert value getValue("c", map) == none
 ```
 
 **NOTE**: N now has a special map value access syntax that should be used
@@ -285,8 +285,8 @@ Given a default value and a `maybe` value, returns the default value if the
 `maybe` value.
 
 ```ts
-assert value default("test1", yes("test")) = "test"
-assert value default("test1", none) = "test1"
+assert value default("test1", yes("test")) == "test"
+assert value default("test1", none) == "test1"
 ```
 
 This is equivalent to:
@@ -425,7 +425,7 @@ if let yes(module) = intoModule(imp "./imports/unit-test.n") {
 	for (result in (results |> subsection(2, 4))) {
 		assert value result.hasPassed
 		assert value result.unitTestType == "type"
-		assert value if let yes(_) = result.possibleTypes { true } else { false }
+		assert value if let yes(_) == result.possibleTypes { true } else { false }
 	}
 
 	assert value (results |> itemAt(2) |> default({
