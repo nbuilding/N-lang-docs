@@ -33,7 +33,7 @@ Here this simply makes a record with one value, but a record can also be used as
 // This will declare a list of strings
 let mut listvalue: list[str] = ['a', 'b', 'c'],
 
-listvalue = listvalue.append('d'), // Append is not a void function
+listvalue = listvalue.append('d'), // Append is a void function
 
 let listindexvalue = listvalue.itemAt(1), // This returns a maybe which will need to be defaulted
 

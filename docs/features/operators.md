@@ -241,7 +241,7 @@ let val1 = m[10][0] // none
 
 ### `NOT`
 
-The NOT operator (`~` or `not`) takes in a bool invert the bool:
+The NOT operator (`~`) takes in a bool invert the bool:
 
 ```js
 let val = ~true // false
