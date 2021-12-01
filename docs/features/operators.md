@@ -10,18 +10,18 @@ The OR operator (`||` or `|`) can be used on two booleans, two ints or a maybe t
 When the inputs are booleans it will return true if one of the values are `true`, the `||` variation is the standard for bools:
 
 ```js
-let val = true || false; // true
+let val = true || false // true
 
-let val1 = false || false; // false
+let val1 = false || false // false
 ```
 
 When the inputs are ints it will return an int that has all of the bits combined, the `|` variation is the standard for ints:
 
 ```js
-let val1 = 0b1100; // 12
-let val2 = 0b0111; // 7
+let val1 = 0b1100 // 12
+let val2 = 0b0111 // 7
 
-let val = val1 | val2; // 15 or:
+let val = val1 | val2 // 15 or:
 /*
   1100
 | 0111 =
@@ -46,18 +46,18 @@ The AND operator (`&&` or `&`) can be used on two booleans or two ints, it will 
 When the inputs are booleans it will return true if both of the values are `true`, the `&&` variation is the standard for bools:
 
 ```js
-let val = true || false; // true
+let val = true || false // true
 
-let val1 = false || false; // false
+let val1 = false || false // false
 ```
 
 When the inputs are ints it will return an int that has all of the bits combined, the `&` variation is the standard for ints:
 
 ```js
-let val1 = 0b1100; // 12
-let val2 = 0b0111; // 7
+let val1 = 0b1100 // 12
+let val2 = 0b0111 // 7
 
-let val = val1 & val2; // 4 or:
+let val = val1 & val2 // 4 or:
 /*
   1100
 & 0111 =
@@ -72,19 +72,19 @@ The ADD operator (`+`) can be used on ints, floats, chars, and strings to combin
 When the inputs are ints it will return an int which is the mathematical addition of the two numbers:
 
 ```js
-let val = 1 + 2; // 3
+let val = 1 + 2 // 3
 ```
 
 When the inputs are floats it will return a float which is the mathematical addition of the two numbers:
 
 ```js
-let val = 1.5 + 2.5; // 4.0
+let val = 1.5 + 2.5 // 4.0
 ```
 
 When the inputs are both strings it will return a string which is the concatenation of both of the strings:
 
 ```js
-let val = 'hel' + 'llo'; // "hello"
+let val = 'hel' + 'llo' // "hello"
 ```
 
 When one of the inputs is a string and another is a char it will take the string version of the char and concatenate them:
@@ -100,17 +100,17 @@ The SUBTRACT operator (`-`) can be used on ints and floats as a sign to signal a
 When the inputs are both ints it will return an int which is the mathematical subtraction of the two numbers:
 
 ```js
-let val = 2 - 1; // 1
+let val = 2 - 1 // 1
 
-let val1 = -1; // -1
+let val1 = -1 // -1
 ```
 
 When the inputs are both floats it will return a float which is the mathematical subtraction of the two numbers:
 
 ```js
-let val = 2.5 - 0.5; // 2.0
+let val = 2.5 - 0.5 // 2.0
 
-let val1 = -1.5; // -1.5
+let val1 = -1.5 // -1.5
 ```
 
 ### `MULTIPLY`
@@ -120,13 +120,13 @@ The MULTIPLY operator (`*`) can be used on ints and floats as a mathematical exp
 When the inputs are both ints it will return an int which is the mathematical multiplication of the two numbers:
 
 ```js
-let val = 2 * 3; // 6
+let val = 2 * 3 // 6
 ```
 
 When the inputs are both floats it will return a float which is the mathematical multiplication of the two numbers:
 
 ```js
-let val = 2.5 * 0.5; // 1.25
+let val = 2.5 * 0.5 // 1.25
 ```
 
 ### `DIVIDE`
@@ -136,13 +136,13 @@ The DIVIDE operator (`/`) can be used on ints and floats as a mathematical expre
 When the inputs are both ints it will return an int which is the mathematical division of the two numbers and it will truncate the number:
 
 ```js
-let val = 7 / 4; // 3
+let val = 7 / 4 // 3
 ```
 
 When the inputs are both floats it will return a float which is the mathematical division of the two numbers:
 
 ```js
-let val = 2.5 / 0.5; // 5.0
+let val = 2.5 / 0.5 // 5.0
 ```
 
 ### `SHIFTL` and `SHIFTR`
@@ -150,9 +150,9 @@ let val = 2.5 / 0.5; // 5.0
 The SHIFTL (`>>`) and SHIFTR (`<<`) operators take in two ints and will bit shift the int on the left the number of times as the number on the right:
 
 ```js
-let val = 1 << 3; // 0100 from 0001 or 4
+let val = 1 << 3 // 0100 from 0001 or 4
 
-let val1 = 8 >> 2; // 0010 from 1000 or 2
+let val1 = 8 >> 2 // 0010 from 1000 or 2
 ```
 
 ### `IN`
@@ -162,7 +162,7 @@ The IN operator (`in`) can be used on values in lists, chars, and strings to mea
 When the values given are a list and a item whose type is type of the values in the list it will return `true` if the item is in the list:
 
 ```js
-let val = 1 in [1, 2, 3, 4]; // true
+let val = 1 in [1, 2, 3, 4] // true
 ```
 
 When the values given are a char and a string or a string and a string it will return true if the char or the string is inside the string:
@@ -180,13 +180,13 @@ The MODULO operator (`%`) can be used to get the remainder of a division between
 When the values given are ints then it will return the remainder of a division between those two ints:
 
 ```js
-let val = 12 % 5; // 2
+let val = 12 % 5 // 2
 ```
 
 When the values given are floats then it will return the remainder of a division between those floats as a float:
 
 ```js
-let val = 1.5 % 1.0; // 0.5
+let val = 1.5 % 1.0 // 0.5
 ```
 
 ### `EXPONENT`
@@ -196,13 +196,13 @@ The EXPONENT operator (`^`) can be used to get the exponent of two ints or two f
 When the values given are ints it will return the exponent of both as a float to account for negative exponents:
 
 ```js
-let val = 2 ^ 3; // 8.0
+let val = 2 ^ 3 // 8.0
 ```
 
 When the values given are floats it will return the exponent of both as a float:
 
 ```js
-let val = 1.5 ^ 2.0; // 2.25
+let val = 1.5 ^ 2.0 // 2.25
 ```
 
 ### `VALUEACCESS`
@@ -212,31 +212,31 @@ The VALUEACCESS operator (`[` x `]`) can be used to get items from lists, maps, 
 When the values given are a list and an int it will return the item in the index of the list as a `maybe`, if it cannot get that item it will return a `none`:
 
 ```js
-let val = [1, 2, 3, 4][0]; // yes(1)
+let val = [1, 2, 3, 4][0] // yes(1)
 
-let val1 = [1, 2, 3, 4][10]; // none
+let val1 = [1, 2, 3, 4][10] // none
 ```
 
 When the values given are a map and a value of its key type it will return the item associated with that key as a `maybe` if the key does not exist it will return `none`:
 
 ```js
-let m = mapFrom([(1, 'one'), (2, 'two')]);
+let m = mapFrom([(1, 'one'), (2, 'two')])
 
-let val = m[1]; // yes("one")
+let val = m[1] // yes("one")
 
-let val1 = m[10]; // none
+let val1 = m[10] // none
 ```
 
 When the values given are a `maybe` it will run as normal if the value is not a `none` but if it is a `none` then it will return `none`:
 
 ```js
-let m = mapFrom([(1, [1, 2, 3]), (2, [2, 3, 4])]);
+let m = mapFrom([(1, [1, 2, 3]), (2, [2, 3, 4])])
 
-let val = m[1][0]; // yes(1)
+let val = m[1][0] // yes(1)
 
-let val = m[1][10]; // none
+let val = m[1][10] // none
 
-let val1 = m[10][0]; // none
+let val1 = m[10][0] // none
 ```
 
 ### `NOT`
@@ -244,7 +244,7 @@ let val1 = m[10][0]; // none
 The NOT operator (`~` or `not`) takes in a bool invert the bool:
 
 ```js
-let val = ~true; // false
+let val = ~true // false
 ```
 
 It can also take in a `maybe` and returns true if it is `none` and false if it is a `yes`:

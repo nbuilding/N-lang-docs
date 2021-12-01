@@ -10,7 +10,7 @@ The other main situations while loops find themselves in are times when a user w
 
 ```js
 while (true) {
-  print('hi');
+  print('hi')
 }
 ```
 
@@ -31,9 +31,9 @@ Here it is the exact same effect as the first example but it is a lot more reada
 ```js
 for (i in range(0, 10, 1)) {
   if (i == 5) {
-    break;
+    break
   }
-  print(i);
+  print(i)
 }
 ```
 
@@ -44,9 +44,9 @@ Continue is used to skip over the rest of a loop when called, it can be used in 
 ```js
 for (i in range(0, 10, 1)) {
   if (i == 5) {
-    continue;
+    continue
   }
-  print(i);
+  print(i)
 }
 ```
 

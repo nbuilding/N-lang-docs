@@ -112,7 +112,7 @@ Thus, it is perfectly valid to only give one argument to `add` for **partial
 application**.
 
 ```ts
-let addOne = add(1);
+let addOne = add(1)
 ```
 
 `addOne` is a function that takes a single integer and returns the integer

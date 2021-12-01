@@ -102,7 +102,7 @@ procedures. Omitting it will simply return the `cmd` value and discard it, like
 the following:
 
 ```js
-times.sleep(1000);
+times.sleep(1000)
 ```
 
 Remember that because functions have to be pure, non-procedural functions cannot

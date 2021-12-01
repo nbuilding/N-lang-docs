@@ -17,7 +17,7 @@ The `|>` operator goes well with currying as it takes in a function on the right
 ```js
 2
   |> sum(1) // Same as sum(1, 2) or sum(1)(2)
-  |> print; // Note that the pipe operator can be stacked indefinitely. This still prints 3
+  |> print // Note that the pipe operator can be stacked indefinitely. This still prints 3
 ```
 
 ## Notes

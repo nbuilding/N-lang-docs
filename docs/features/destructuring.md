@@ -4,8 +4,8 @@ Destructuring is the main way to get items out of tuples and can be used inside 
 
 ```js
 let a,
-  b = (1, 2); // Sets a and b to 1 and 2 respectively
-let { a, c: b } = { a: 1, c: 1 }; // Sets a and c in the record to a and b respectively
+  b = (1, 2), // Sets a and b to 1 and 2 respectively
+let { a, c: b } = { a: 1, c: 1 }, // Sets a and c in the record to a and b respectively
 ```
 
 This is a direct destructure, which can only be done with tuples and records, as they have defined fields or types.

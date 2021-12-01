@@ -380,7 +380,7 @@ other values.
 
 See `getUnitTestResults` below for an example.
 
-### `getUnitTestResults` : `(module) -> list[{ hasPassed: bool; fileLine: int; unitTestType: str; possibleTypes: maybe[(str, str)] }]`
+### `getUnitTestResults` : `(module) -> list[{ hasPassed: bool, fileLine: int, unitTestType: str, possibleTypes: maybe[(str, str)] }]`
 
 Gets a list of assertion results from the given `module` value. Assertion
 results are a record with fields that depend on the type of assertion used in

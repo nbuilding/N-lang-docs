@@ -91,14 +91,14 @@ type pub value = object(map[str, value])
 This takes a json value and turns it into a string for ease of use.
 
 ```js
-print(json.stringify(value));
+print(json.stringify(value))
 ```
 
 `json.parse: (str) -> json.value`:
 This takes in a string and will return a `json.value` in an attempt to parse it, if it cannot parse it then it will return a `json.null`
 
 ```js
-print(json.parse('{ test: "test" }'));
+print(json.parse('{ test: "test" }'))
 ```
 
 `json.parseSafe: (str) -> maybe[json.value]`:
@@ -129,7 +129,7 @@ This takes in a port to open to and a function which takes in a path, request ty
 ```js
 request.createServer(
   3000,
-  (path:str requestType:str, additionalData:str) -> cmd[{ responseCode: int; data: list[int]; headers: map[str, str]; mimetype: str }] {
+  (path:str requestType:str, additionalData:str) -> cmd[{ responseCode: int, data: list[int], headers: map[str, str], mimetype: str }] {
     return {
       responseCode: 200,
       data: [32, 33, 34, 35],
@@ -208,7 +208,7 @@ alias send = str -> cmd[()]
 `websocket.close: () -> cmd[()]`:
 Currently unused.
 
-`websocket.user: { send: str -> cmd[()]; disconnect: () -> cmd[()]; ip: (int, int, int, int); uuid: str }`:
+`websocket.user: { send: str -> cmd[()], disconnect: () -> cmd[()], ip: (int, int, int, int), uuid: str }`:
 Used as an individual user when hosting a websocket server.
 
 ```js
@@ -220,7 +220,7 @@ alias user = {
 }
 ```
 
-`websocket.connect: { onOpen: websocket.send -> cmd[bool]; onMessage: websocket.send -> cmd[bool] } -> str -> cmd[maybe[str]]`:
+`websocket.connect: { onOpen: websocket.send -> cmd[bool], onMessage: websocket.send -> cmd[bool] } -> str -> cmd[maybe[str]]`:
 Connects to a websocket, `onOpen` and `onMessage` run in parallel and if either return `true` it will exit out of both, the `str` is an error message that my occur when connecting.
 
 ```js
@@ -238,7 +238,7 @@ let websocketTest = websocket.connect({
 }, "wss://echo.websocket.org")!
 ```
 
-`websocket.createServer: int -> { onConnect: websocket.user -> str -> cmd[bool]; onMessage: websocket.user -> str -> cmd[bool]; onDisconnect: websocket.user -> { code: int; reson: str } -> cmd[bool] }`:
+`websocket.createServer: int -> { onConnect: websocket.user -> str -> cmd[bool], onMessage: websocket.user -> str -> cmd[bool], onDisconnect: websocket.user -> { code: int, reson: str } -> cmd[bool] }`:
 Opens a websocket server on `ws://localhost:<PORTNUMBER>`. Runs `onConnect` when a user connects, `onMessage` runs when a user sends a message, and `onDisconnect` will run when a user disconnects, if either of these return `true` then the websocket server will close.
 
 ```js
@@ -254,7 +254,7 @@ let _ = websocket.createServer(
       let _ = user.send(message)!
       return false
     }
-    onDisconnect: [user:websocket.user exitData:maybe[{ code: int; reason:str }]] -> cmd[bool] { return false }
+    onDisconnect: [user:websocket.user exitData:maybe[{ code: int, reason:str }]] -> cmd[bool] { return false }
   },
   3000
 )!

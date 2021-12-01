@@ -3,13 +3,13 @@
 In making a video game, for example, you may want to keep track of the state of your game. In N, enums are an excellent data type for storing a specific possibility out of multiple possibilities. You could keep track of your game like this:
 
 ```ts
-type state = mainMenu | ongoing | ended;
+type state = mainMenu | ongoing | ended
 ```
 
 `mainMenu`, `ongoing`, and `ended` are **variants** of the enum `state`. This allows you to store the state of your game in a variable, and its value will have to be one of those three variants:
 
 ```ts
-let gameState: state = ended;
+let gameState: state = ended
 ```
 
 An enum type declaration starts with the keyword `type` followed by the name of the enum type, which you can use in type annotations. The type name is followed by an equal sign (`=`) and then the variants of the enum, separated by pipes (`|`). Each of these variants will be introduced as values in your code, so you can use them as constants.
@@ -21,7 +21,7 @@ assert type mainMenu : state
 There are several enums built into N that you can use right out of the box. `bool` is nothing more than an enum with two variants, `true` and `false`:
 
 ```ts
-type bool = true | false;
+type bool = true | false
 ```
 
 Back to your video game, perhaps you also want to store the health of the player in your game, but only while the game is running, and when the game ends, you want to store the name of the player so they can be added to a leaderboard. Enum variants are also capable of storing other values. Let's modify `state` from the above example to store the player health and name in our enum:

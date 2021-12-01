@@ -12,22 +12,22 @@ This makes a simple tuple with an `int` and a `char`. Next, let us take a look a
 ```js
 // This will declare a record with an int called value and then get that from it
 let recordvalue: { value: int } = {
-  value: 1, // There is either a newline or ; at the end
-};
-let value = recordvalue.value;
+  value: 1,
+}
+let value = recordvalue.value
 ```
 
 Here this simply makes a record with one value, but a record can also be used as a simpler way of storing class-like data, without the usage of a class. Lastly is a list, which takes in a type and stores a list of values of that type, there is no limit to how many items a data can hold, here is an example of a list in action:
 
 ```js
 // This will declare a list of strings
-let listvalue: list[str] = ['a', 'b', 'c'];
+let listvalue: list[str] = ['a', 'b', 'c'],
 
-var listvalue = append('d', listvalue); // Append is not a void function
+var listvalue = append('d', listvalue), // Append is not a void function
 
-let listindexvalue = itemAt(1, listvalue); // This returns a maybe which will need to be defaulted
+let listindexvalue = itemAt(1, listvalue), // This returns a maybe which will need to be defaulted
 
-print(listindexvalue);
+print(listindexvalue),
 ```
 
 To edit a record or set an item in a list you are able to use the `..` operator, here is an example of its use:
@@ -41,34 +41,34 @@ print([..listvalue, "d"]) // prints out ["a", "b", "c", "d"]
 The `..` operator works by inserting all of the items in the list that it is used on into the list literal, for example a `[..["a", "b"], "c", ..["d"]]` will evaluate to a `["a", "b", "c", "d"]`. For records it works a bit different, you are able to override fields in records by inserting them later as so:
 
 ```js
-let recordvalue: { value1: int; value2: str } = {
-	value1: 1
-	value2: "2"
+let recordvalue: { value1: int, value2: str } = {
+	value1: 1,
+	value2: "2",
 }
 
 print({
-	..recordvalue
-	value1: 2
-}) // prints out { value1: 2; value2: "2" }
+	..recordvalue,
+	value1: 2,
+}) // prints out { value1: 2, value2: "2" }
 ```
 
 The `..` operator can even be used with two records to create a new one:
 
 ```js
-let recordvalue: { value1: int; value2: str } = {
-	value1: 1
-	value2: "2"
+let recordvalue: { value1: int, value2: str } = {
+	value1: 1,
+	value2: "2",
 }
 
-let recordvalue1: { value2: str; value3: bool } = {
-	value2: "3"
-	value3: false
+let recordvalue1: { value2: str, value3: bool } = {
+	value2: "3",
+	value3: false,
 }
 
 print({
-	..recordvalue
-	..recordvalue1
-}) // prints out { value1: 1; value2: "3"; value3: false }
+	..recordvalue,
+	..recordvalue1,
+}) // prints out { value1: 1, value2: "3", value3: false }
 ```
 
 ## Notes:

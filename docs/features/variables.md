@@ -22,23 +22,23 @@ variable named `name` to the string `"Billy"`, and we indicate that `name` is of
 the `str` type.
 
 ```js
-let name: str = 'Billy';
+let name: str = 'Billy'
 ```
 
 In many cases, however, the type can be inferred, so the type annotation can be
 omitted. The above code can be simplified to the following:
 
 ```js
-let name = 'Billy';
+let name = 'Billy'
 ```
 
 You can use a [definite pattern](./destructuring.md) in a `let` statement to
 extract values from various types of values, such as records and tuples.
 
 ```js
-let { name; age: yearsSinceBirth } = {
-  name: "Billy"
-  age: 36
+let { name, age: yearsSinceBirth } = {
+  name: "Billy",
+  age: 36,
 }
 
 assert value (name, yearsSinceBirth) == ("Billy", 36)
