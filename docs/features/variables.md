@@ -22,14 +22,14 @@ variable named `name` to the string `"Billy"`, and we indicate that `name` is of
 the `str` type.
 
 ```js
-let name: str = 'Billy'
+let name: str = 'Billy';
 ```
 
 In many cases, however, the type can be inferred, so the type annotation can be
 omitted. The above code can be simplified to the following:
 
 ```js
-let name = 'Billy'
+let name = 'Billy';
 ```
 
 You can use a [definite pattern](./destructuring.md) in a `let` statement to
