@@ -11,7 +11,7 @@ Internal Libraries are used to add complicated features from Python and JavaScri
 5. [`times`](#times)
 6. [`websocket`](#websocket)
 7. [`mutex`](#mutex)
-8. [Making your own](#Making%20your%20own)
+8. [Making your own](#Making-your-own)
 9. [Notes](#Notes)
 
 ## `FileIO`
