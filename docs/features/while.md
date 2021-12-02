@@ -3,7 +3,7 @@
 While loops are great for running a piece of code over and over again until a condition is met, here is one that waits for the user to type hello:
 
 ```js
-while ( SystemIO.inp("Please type `hello`: ")! /= "hello" ) {}
+while ( SystemIO.inp("Please type `hello`: ")! ~= "hello" ) {}
 ```
 
 The other main situations while loops find themselves in are times when a user wants to run a set of code indefinitely:
