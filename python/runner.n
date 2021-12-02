@@ -1,2 +1,0 @@
-let test:str = 0
-let test = "ree"
