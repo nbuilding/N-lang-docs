@@ -96,3 +96,22 @@ if let yes(text) = yes("hello") {
   assert value text == "hello"
 }
 ```
+
+## Mutability
+
+All variables, by default, are immutable in N, though in previous versions this was not the case as one could use the `var` keyword to change the value of any variable.
+
+Now, to change the value of a variable you have to use the `mut` keyword after `pub` or if it is not there, `let`. This will allow you to directly reassign the value of the variable.
+
+```js
+let mut val = 1;
+
+val = val + 1
+assert value val == 2
+```
+
+You do not have to only use `=` you are also able to use `/=`, `*=`, `+=`, `-=`, `|=`, `&=`, and `%=`. These are all expanded out internally.
+
+### Mutability and async
+
+Mutability in async functions can lead to race conditions when implementing parallelism. N will warn you about this but will not explicitly cause and error. If you want to mutate a value without the chance of race conditions, use the `mutex` library.
