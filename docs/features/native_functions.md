@@ -15,12 +15,12 @@ needing to import anything.
 
 ## Basics
 
-### `intInBase10` : `(int) -> str`
+### `int.toString` : `() -> str`
 
 Converts an integer to a string.
 
 ```ts
-assert value intInBase10(10) = "10"
+assert value (10).toString() = "10"
 ```
 
 **NOTE**: To convert a float to a string, use the `stringify` function from the
@@ -29,81 +29,81 @@ assert value intInBase10(10) = "10"
 **NOTE**: To parse a string as an integer or float, use the `parse` or
 `parseSafe` function from the `json` module.
 
-### `toFloat` : `(int) -> float`
+### `int.toFloat` : `() -> float`
 
 Converts an integer to a float. Inverse of `round`, `floor`, and `ceil`.
 
 ```ts
-assert value toFloat(3) == 3.0
+assert value (3).toFloat() == 3.0
 ```
 
-### `round` : `(float) -> int`
+### `float.round` : `() -> int`
 
 Converts a float to an integer. Non-integers are rounded to the nearest integer;
 if the fractional part is 0.5, then it is rounded up. Inverse of `toFloat`.
 
 ```ts
-assert value round(10.5) == 11
-assert value round(-10.5) == -10
+assert value (10.5).round() == 11
+assert value (-10.5).round() == -10
 ```
 
 **NOTE**: The behavior for `round`, `floor`, and `ceil` when given an infinity
 or NaN is undefined. See nbuilding/N-lang#243.
 
-### `floor` : `(float) -> int`
+### `float.floor` : `() -> int`
 
 Converts a float to an integer, rounding down. Inverse of `toFloat`.
 
 ```ts
-assert value floor(10.5) == 10
-assert value floor(-10.5) == -11
+assert value (10.5).floor() == 10
+assert value (-10.5).floor() == -11
 ```
 
-### `ceil` : `(float) -> int`
+### `float.ceil` : `() -> int`
 
 Converts a float to an integer, rounding up. Inverse of `toFloat`.
 
 ```ts
-assert value ceil(10.5) == 11
-assert value ceil(10.4) == 11
-assert value ceil(-10.5) == -10
+assert value (10.5).ceil() == 11
+assert value (10.4).ceil() == 11
+assert value (-10.5).ceil() == -10
 ```
 
-### `charCode` : `(char) -> int`
+### `char.charCode` : `() -> int`
 
 Gets the Unicode code point value for the given character. Inverse of `intCode`.
 
 ```ts
-assert value charCode(\{a}) == 97
-assert value charCode(\{🕴}) == 0x1f574
+assert value \{a}.charCode() == 97
+assert value \{🕴}.charCode() == 0x1f574
 ```
 
-### `intCode` : `(int) -> char`
+### `int.intCode` : `() -> char`
 
 Converts the given Unicode code point to the corresponding character. Invalid
 code points are converted to � (U+FFFD, REPLACEMENT CHARACTER). Inverse of
 `charCode`.
 
 ```ts
-assert value intCode(32) == \{ }
-assert value intCode(-1) == \u{FFFD}
+assert value (32).intCode() == \{ }
+assert value (-1).intCode() == \u{FFFD}
 ```
 
-### `charAt` : `(int, str) -> maybe[char]`
+### `str.charAt` : `(int) -> maybe[char]`
 
 Gets the character (not grapheme or code point) at the given index. Since
 strings are probably not stored in UTF-32, this is probably O(n), but this is
 implementation-defined. Negative indices aren't supported.
 
 ```ts
-assert value charAt(1, "abc") == yes(\{b})
-assert value charAt(-1, "abc") == none
+assert value "abc".charAt(1) == yes(\{b})
+assert value "abc".charAt(-1) == none
 ```
 
 **NOTE**: N now has a special character access syntax that should be used
 instead: `string[index]`.
 
-### `substring` : `(int, int, str) -> str`
+### `str.substring` : `(int, int) -> str`
 
 Gets a portion of a string given a start index (inclusive) then the end index
 (exclusive). The indices work as they do in Python, so they support negative
@@ -111,15 +111,15 @@ indices; however, if the start index is after the end index, then `substring`
 returns an empty string.
 
 ```ts
-assert value substring(0, 2, "abc") == "ab"
-assert value substring(-3, -1, "apple sauce") == "uc"
-assert value substring(0, -1, "banana jam") == "banana ja"
-assert value substring(0, 100, "hi") == "hi"
-assert value substring(2, 100, "hi") == ""
-assert value substring(5, 3, "hello world") == ""
+assert value "abc".substring(0, 2) == "ab"
+assert value "apple sauce".substring(-3, -1) == "uc"
+assert value "banana jam".substring(0, -1) == "banana ja"
+assert value "hi".substring(0, 100) == "hi"
+assert value "hi".substring(2, 100) == ""
+assert value "hello world".substring(5, 3) == ""
 ```
 
-### `split` : `(char, str) -> list[str]`
+### `str.split` : `(char) -> list[str]`
 
 Splits the given string by a character. Returns an empty array for an empty
 string.
@@ -130,12 +130,12 @@ assert value split(\{b}, "") == []
 assert value split(\{b}, "apple") == ["apple"]
 ```
 
-### `strip` : `(str) -> str`
+### `str.strip` : `() -> str`
 
 Removes whitespace characters.
 
 ```ts
-assert value strip(" abc ") == "abc"
+assert value " abc ".strip() == "abc"
 ```
 
 **NOTE**: The characters removed by `strip` are implementation-defined. See
@@ -143,7 +143,7 @@ nbuilding/N-lang#245.
 
 ## Lists
 
-### `len` : `[t] (t) -> int`
+### `list[t].len` : `() -> int`
 
 Gets the length of the given value. The behavior of `len` depends on the type
 of value given; if the argument is a string or list, then it'll return its
@@ -151,17 +151,17 @@ length (for strings, this is in Unicode characters, not code points or
 graphemes). Otherwise, it'll return zero.
 
 ```ts
-assert value len("abc") == 3
-assert value len(100) == 0
+assert value "abc".len() == 3
+assert value (100).len() == 0
 ```
 
-### `itemAt` : `[t] (int, list[t]) -> maybe[t]`
+### `list[t].itemAt` : `[t] (int) -> maybe[t]`
 
 Gets the item of a list by index. Does not support negative indices.
 
 ```ts
-assert value itemAt(1, [1, 2, 3]) == yes(2)
-assert value itemAt(-1, [1, 2, 3]) == none
+assert value [1, 2, 3]itemAt(1) == yes(2)
+assert value [1, 2, 3].itemAt(-1) == none
 ```
 
 **NOTE**: N now has a special list item access syntax that should be used
@@ -170,7 +170,7 @@ instead: `list[index]`.
 **NOTE**: The representation of lists in memory is implementation-defined, so
 item access may be O(n) in the worst case.
 
-### `append` : `[t] (t, list[t]) -> list[t]`
+### `list[t].append` : `[t] (t) -> list[t]`
 
 Returns a new list with the given item added to the end of the given list.
 
@@ -182,20 +182,20 @@ assert value list == [1, 2, 3]
 
 **NOTE**: `append` does not mutate the list.
 
-### `subsection` : `[t] (int, int, list[t]) -> list[t]`
+### `list[t].subsection` : `[t] (int, int) -> list[t]`
 
 Returns a list containing a portion of the items in the given list; analogous to
 `substring` but for lists.
 
 ```ts
-assert value subsection(2, 4, [0, 1, 2, 3, 4, 5]) == [2, 3]
-assert value subsection(4, 1000, [0, 1, 2, 3, 4, 5]) == [4, 5]
-assert value subsection(-3, -5, [1, 2, 3]) == []
-assert value subsection(-3, 1, [1, 2, 3]) == [1]
-assert value subsection(3, 2, [1, 2, 3]) == []
+assert value [0, 1, 2, 3, 4, 5].subsection(2, 4) == [2, 3]
+assert value [0, 1, 2, 3, 4, 5].subsection(4, 1000) == [4, 5]
+assert value [1, 2, 3].subsection(-3, -5) == []
+assert value [1, 2, 3].subsection(-3, 1) == [1]
+assert value [1, 2, 3].subsection(3, 2) == []
 ```
 
-### `filterMap` : `[a, b] ((a) -> maybe[b], list[a]) -> list[b]`
+### `list[a].filterMap` : `[a, b] ((a) -> maybe[b]) -> list[b]`
 
 Applies the given function to each item in the given list. If the function
 returns `none`, the item will not be included in the list; otherwise, the
@@ -206,9 +206,9 @@ new list containing the resulting `yes`-contained values given by the function.
 easily defined in terms of `filterMap`.
 
 ```ts
-assert value filterMap([value:int] -> maybe[int] {
+assert value [0, 1, 2, 3, 4].filterMap([value:int] -> maybe[int] {
 	return yes(value * value + 1)
-}, [0, 1, 2, 3, 4]) == [1, 2, 5, 10, 17]
+}) == [1, 2, 5, 10, 17]
 ```
 
 ### `range` : `(int, int, int) -> list[int]`
@@ -236,6 +236,39 @@ assert value range(1, 0, 1) == []
 **NOTE**: The representation of lists in memory is implementation-defined, so an
 implementation may attempt to store the entire list in memory. This may be
 costly for performance when iterating over a large range.
+
+### `str.parseInt` : `() -> maybe[int]`
+
+Returns an int if it able to parse the string into a base 10 integer, will return none if it fails
+
+```js
+assert value "asdf".parseInt() == none
+assert value "10".parseInt() == 10
+```
+
+### `str.parseFloat` : `() -> maybe[float]`
+
+Returns a int if it able to parse the string into a base 10 float, will return none if it fails or if the value is not finite
+
+```js
+assert value "asdf".parseInt() == none
+assert value "nan".parseInt() == none
+assert value "inf".parseInt() == none
+assert value "-inf".parseInt() == none
+assert value "10.34".parseInt() == 10
+```
+
+### `exit` : `(int) -> ()`
+
+Exits the program with the given exit code
+
+```js
+print("test")
+
+exit(0)
+
+print("this will never run")
+```
 
 ## Maps
 
@@ -278,21 +311,21 @@ in the worst case.
 
 ## `maybe` values
 
-### `default` : `[t] (t, maybe[t]) -> t`
+### `maybe[t].default` : `[t] (t) -> t`
 
 Given a default value and a `maybe` value, returns the default value if the
 `maybe` value is `none`; otherwise, it returns the value contained in the
 `maybe` value.
 
 ```ts
-assert value default("test1", yes("test")) == "test"
-assert value default("test1", none) == "test1"
+assert value yes("test").default("test1") == "test"
+assert value none.default("test1") == "test1"
 ```
 
 This is equivalent to:
 
 ```ts
-let default = [[t] defaultValue:t maybe:maybe[t]] -> t {
+let default = [t] (defaultValue:t, maybe:maybe[t]) -> t {
 	if let yes(value) = maybe {
 		return value
 	} else {
@@ -380,7 +413,7 @@ other values.
 
 See `getUnitTestResults` below for an example.
 
-### `getUnitTestResults` : `(module) -> list[{ hasPassed: bool, fileLine: int, unitTestType: str, possibleTypes: maybe[(str, str)] }]`
+### `module.getUnitTestResults` : `() -> list[{ hasPassed: bool, fileLine: int, unitTestType: str, possibleTypes: maybe[(str, str)] }]`
 
 Gets a list of assertion results from the given `module` value. Assertion
 results are a record with fields that depend on the type of assertion used in
@@ -404,7 +437,7 @@ field, a boolean that represents whether the assertion passed.
 
 ```ts
 if let yes(module) = intoModule(imp "./imports/unit-test.n") {
-	let results = getUnitTestResults(module)
+	let results = module.getUnitTestResults()
 
 	assert value len(results) == 4
 
