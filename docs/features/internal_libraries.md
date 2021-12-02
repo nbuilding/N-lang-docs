@@ -10,7 +10,8 @@ Internal Libraries are used to add complicated features from Python and JavaScri
 4. [`SystemIO`](#SystemIO)
 5. [`times`](#times)
 6. [`websocket`](#websocket)
-7. [Notes](#Notes)
+7. [`mutex`](#mutex)
+8. [Notes](#Notes)
 
 ## `FileIO`
 
@@ -242,22 +243,73 @@ let websocketTest = websocket.connect({
 Opens a websocket server on `ws://localhost:<PORTNUMBER>`. Runs `onConnect` when a user connects, `onMessage` runs when a user sends a message, and `onDisconnect` will run when a user disconnects, if either of these return `true` then the websocket server will close.
 
 ```js
-let _ = websocket.createServer(
+websocket.createServer(
   {
     onConnect: (user:websocket.user, path:str) -> cmd[bool] {
       print(user)
-      let _ = user.send("hello")!
+      user.send("hello")!
       return false
     }
     onMessage: (user:websocket.user, message:str) -> cmd[bool] {
       print(message)
-      let _ = user.send(message)!
+      user.send(message)!
       return false
     }
     onDisconnect: (user:websocket.user, exitData:maybe[{ code: int, reason:str }]) -> cmd[bool] { return false }
   },
   3000
 )!
+```
+
+## `mutex`
+
+Mutex is a way of locking variables to avoid race conditions when implementing parallelism. You can pass in a value and get a `mutex.locked` which you can then attempt to lock and get a `mutex.unlocked`, which you can read or write to. While one thread has locked the mutex value, no other thread is able to access it until it unlocks it again. Mutex values do not need the `mut` modifier applied to them.
+
+`mutex.new: [t] (t) -> mutex.locked[t]`:
+Creates a new `mutex.locked` value from the value passed in.
+
+```js
+let mutexValue = mutex.new(0)
+```
+
+`mutex.tryAccess: [a, b] (mutex.unlocked[a] -> cmd[b], mutex.locked[a]) -> cmd[maybe[b]]`
+Attempts to access the `mutex.locked` if it locked by another thread then it will continue without running the function. If it unlocked then it runs the function passed in and returns its result.
+
+```js
+mutexValue
+          |> mutex.tryAccess(
+            (unlocked: mutex.unlocked[int]) -> cmd[()] {
+              // Do stuff with mutex
+            }
+          )!
+```
+
+`mutex.access: [a, b] (mutex.unlocked[a] -> cmd[b], mutex.locked[a]) -> cmd[b]`
+Same as `mutex.tryAccess` but it will wait for the value to be unlocked so it can run the function passed in before continuing.
+
+```js
+mutexValue
+          |> mutex.access(
+            (unlocked: mutex.unlocked[int]) -> cmd[()] {
+              // Do stuff with mutex
+            }
+          )!
+```
+
+`mutex.read: [t] (mutex.unlocked[t]) -> cmd[t]`
+Reads the value contained in a `mutex.unlocked`.
+
+```js
+let val = unlocked
+                  |> mutex.read()!
+```
+
+`mutex.write: [t] (t, mutex.unlocked[t]) -> cmd[t]`
+Writes a value to a `mutex.unlocked` and returns the value.
+
+```js
+unlocked
+        |> mutex.write(val + 1)!
 ```
 
 ## Notes
