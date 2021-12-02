@@ -11,7 +11,8 @@ Internal Libraries are used to add complicated features from Python and JavaScri
 5. [`times`](#times)
 6. [`websocket`](#websocket)
 7. [`mutex`](#mutex)
-8. [Notes](#Notes)
+8. [Making your own](#Making%20your%20own)
+9. [Notes](#Notes)
 
 ## `FileIO`
 
@@ -311,6 +312,31 @@ Writes a value to a `mutex.unlocked` and returns the value.
 unlocked
         |> mutex.write(val + 1)!
 ```
+
+## Making your own
+
+Whenever the `import` keyword is called with a name that does not match one of these libraries, N will check for a python file of the same name in the directory, if it finds one it will check if it has a function called `_values`, if this is successful then it will treat the file as a mapping for python.
+
+The `_values` function returns a dictionary of strings, which equate to the names of the functions, and types in the N syntax. These types are represented as such:
+
+- `str`, `int`, `float`, `bool`, and `char` are represented as their name wrapped in quotes (`"str"`)
+  - `char`s at runtime are represeted as one length strings
+- `list[t]` is `n_list_type.with_typevars([t])`
+- `map[k, v]` is `n_map_type.with_typevars([k, v])`
+  - Respresented as a dictionary during runtime
+- `cmd[t]` is `n_cmd_type.with_typevars([t])`
+  - Represented as a `Cmd` object from `ncmd.py` at runtime
+- `maybe[t]` is `n_maybe_type.with_typevars([t])`
+  - All enum values are represented as an `EnumValue` from `enums.py`
+- `result[o, e]` is `n_result_type.with_typevars([o, e])`, `n_result_type` comes from `native_types.py`
+- `module` is `n_module_type.with_typevars([])`
+  - Represented as a `NModuleWrapper` from `type.py` at runtime
+- Records are represented as dictionaries during type checking and runtime
+
+The `_types` function is optional but if included must return a dictionary of strings to types. These types must be of the class `NTypeVars` from `type.py`
+
+These files may in the future be part of a Pypi library for ease of access.
+
 
 ## Notes
 
