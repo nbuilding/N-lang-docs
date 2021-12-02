@@ -4,12 +4,12 @@ Like a few programming languages, N has classes.
 
 ```js
 /// A sheep.
-class pub Sheep [colour:str age:float name:str] {
+class pub Sheep (colour:str, age:float, name:str) {
 	/// The display name for the type of sheep based on its wool colour.
 	let typeName = colour + " sheep"
 
 	/// Create a new Sheep with the given name
-	let pub rename = [newName:str] -> Sheep {
+	let pub rename = (newName:str) -> Sheep {
 		return Sheep(colour, age, newName)
 	}
 
@@ -54,22 +54,22 @@ For example, the above example is equivalent to the following:
 
 ```js
 alias pub Sheep = {
-	rename: str -> Sheep
-	introduction: str
+	rename: str -> Sheep,
+	introduction: str,
 }
 
-let pub Sheep = [colour:str age:float name:str] -> Sheep {
+let pub Sheep = (colour:str, age:float, name:str) -> Sheep {
 	let typeName = colour + " sheep"
 
-	let pub rename = [newName:str] -> Sheep {
+	let pub rename = (newName:str) -> Sheep {
 		return Sheep(colour, age, newName)
 	}
 
 	let pub introduction = "Hi, I'm " + name + ", and I am a " + typeName + "."
 
 	return {
-		rename
-		introduction
+		rename,
+		introduction,
 	}
 }
 ```
@@ -81,13 +81,13 @@ not nominally typed, like TypeScript. This allows for duck-typing: if the class 
 Thus, the following code is valid and free of type errors.
 
 ```js
-class Duck [] {
+class Duck () {
 	let pub walk = "Waddle waddle."
 
 	let pub quack = "Quack. Got any grapes?"
 }
 
-class Human [] {
+class Human () {
 	let pub walk = "I am walking."
 
 	let pub quack = "\"Quack.\""

@@ -29,11 +29,11 @@ Back to your video game, perhaps you also want to store the health of the player
 ```ts
 type state =
 	| mainMenu
-	| <ongoing int>
-	| <ended str>
+	| ongoing(int)
+	| ended(str)
 ```
 
-Now, the `ongoing` and `ended` variants each contain one field, but each variant can have a field of a different type. In N, when variants contain at least one field, they need to be surrounded in angle brackets (`<` and `>`). Of course, enum variants aren't limited to just one field; they can contain multiple fields of tuples, lists, or even other enums.
+Now, the `ongoing` and `ended` variants each contain one field, but each variant can have a field of a different type. In N, when variants contain at least one field, these need to be in the function syntax with the name first and the types wrapped in parenthesis, seperated by commas. Of course, enum variants aren't limited to just one field; they can contain multiple fields of tuples, lists, or even other enums.
 
 Because `ongoing` takes a field of type `int`, the type declaration provides a function named `ongoing` that takes an int and returns a `state`:
 
@@ -57,7 +57,7 @@ if gameState = mainMenu {
 Now that we've stored values inside an enum variant, how would one get the value back out? Since an enum value might be one of multiple variants, we need to use an `if let` statement or expression to check if an enum value is a certain variant. `if let` is followed by a conditional pattern. For example, to determine whether the game is ongoing:
 
 ```ts
-if let <ongoing health> = gameState {
+if let ongoing(health) = gameState {
 	print("Your health is at " + intInBase10(health) + " HP.")
 }
 ```
@@ -68,21 +68,21 @@ Enums are not limited to keeping track of state. N provides built-in enums `mayb
 
 ```ts
 type maybe[t]
-	| <yes t>
+	| yes(t)
 	| none
- 
+
 type result[o, e]
-	| <ok o>
-	| <err e>
+	| ok(o)
+	| err(e)
 ```
 
 These types allow programs in N to avoid runtime errors because the type checker encourages programs to check to ensure that the enums are a specific variant. The `maybe` type helps avoid null pointer exceptions, and `result` allows functions to return errors without implicitly throwing unexpected uncaught runtime errors. You can use `maybe` and `result` like ordinary enums:
 
 ```ts
-let divideBy2 = [number: int] -> result[int, string] {
-	if number % 2 = 1 {
+let divideBy2 = (number: int) -> result[int, string] {
+	if number % 2 == 1 {
 		return err("Odd numbers are not divisible by two.")
-	} else if not number = 42 {
+	} else if number != 42 {
 		return ok(number / 2)
 	} else {
 		return err("I have decided to refuse to divide 42 by two.")
@@ -91,7 +91,7 @@ let divideBy2 = [number: int] -> result[int, string] {
 ```
 
 ```ts
-if let <yes char> = SystemIO.inp("Give me a character.")! |> charAt(0) {
+if let yes(char) = (SystemIO.inp("Give me a character.")!).charAt(0) {
 	print(char)
 } else {
 	print("All I asked for was ONE character, and you gave me NOTHING. You MONSTER!")
@@ -102,12 +102,12 @@ When returning errors, it is helpful to create your own error enum type so that 
 
 ```ts
 type httpError =
-	| <invalidUrl str>
+	| invalidUrl(str)
 	| connectionFailed
-	| <statusCode int response>
+	| statusCode(int, response)
 ```
 
 ## Notes
+
 - Enums can be used with [generics](./generic.md).
 - By convention, enum names are lowerCamelCase like identifiers, unlike most other programming languages.
-- Angle brackets are used for variants with fields because historically, the function call syntax used angle brackets, and when that was changed to C-style function calls, enum declarations remained unchanged by accident.

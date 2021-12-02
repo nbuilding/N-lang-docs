@@ -28,10 +28,10 @@ type divisionError =
 	| divisionByZero
 	| dividendNotDivisible
 
-let divideSafe = [dividend:int divisor:int] -> result[int, divisionError] {
+let divideSafe = (dividend:int, divisor:int) -> result[int, divisionError] {
 	if divisor == 0 {
 		return err(divisionByZero)
-	} else if dividend % divisor /= 0 {
+	} else if dividend % divisor ~= 0 {
 		return err(dividendNotDivisible)
 	} else {
 		let quotient = dividend / divisor
@@ -78,7 +78,7 @@ For example, the following example gets the first item from a list `names`, but
 if the list is empty, then the `else` branch returns `Doe` as a default value.
 
 ```js
-let first = if <yes name> = names[0] {
+let first = if let yes(name) = names[0] {
 	name
 } else {
 	"Doe"

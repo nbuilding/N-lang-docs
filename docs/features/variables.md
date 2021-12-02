@@ -36,9 +36,9 @@ You can use a [definite pattern](./destructuring.md) in a `let` statement to
 extract values from various types of values, such as records and tuples.
 
 ```js
-let { name; age: yearsSinceBirth } = {
-  name: "Billy"
-  age: 36
+let { name, age: yearsSinceBirth } = {
+  name: "Billy",
+  age: 36,
 }
 
 assert value (name, yearsSinceBirth) == ("Billy", 36)
@@ -92,38 +92,26 @@ Variables are also created by conditional patterns in [`if let`](./if_statements
 example, `text` is usable like a variable containing a string.
 
 ```js
-if let <yes text> = yes("hello") {
+if let yes(text) = yes("hello") {
   assert value text == "hello"
 }
 ```
 
-## `var` statements
+## Mutability
 
-N has a `var` statement to change the values of variables. However, its
-behavior is not defined, so its use is strongly discouraged. Its syntax only
-remains in N to maintain backward compatibility.
+All variables, by default, are immutable in N, though in previous versions this was not the case as one could use the `var` keyword to change the value of any variable.
+
+Now, to change the value of a variable you have to use the `mut` keyword after `pub` or if it is not there, `let`. This will allow you to directly reassign the value of the variable.
 
 ```js
-class Test {
-  let pub property = 3
+let mut val = 1;
 
-  let pub change = [] -> () {
-    var property = 4
-  }
-}
-
-let function = [a:int] -> () {
-  var a = 2
-}
-
-let n = 1
-function(n)
-print(n)
-
-let test = Test()
-test.change()
-print(test.property)
+val = val + 1
+assert value val == 2
 ```
 
-The following program could print first either `1` or `2` then either `3` or
-`4`. Any N implementation is free to decide what `var` does.
+You do not have to only use `=` you are also able to use `/=`, `*=`, `+=`, `-=`, `|=`, `&=`, and `%=`. These are all expanded out internally.
+
+### Mutability and async
+
+Mutability in async functions can lead to race conditions when implementing parallelism. N will warn you about this but will not explicitly cause and error. If you want to mutate a value without the chance of race conditions, use the `mutex` library.
