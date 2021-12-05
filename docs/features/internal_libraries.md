@@ -119,7 +119,7 @@ import request
 ```
 
 `request.request: (str, str, maybe[json.value], maybe[json.value]) -> cmd[{ code: int, response: str, return: json.value }]:`:
-This takes in a url, request type, headers, and data to send and gives back the request reponse
+This takes in the request type, url, headers, and data to send in that order and gives back the request reponse
 
 ```js
 request.post("github.com", "GET", none, none)! // Gets github.com's base page
